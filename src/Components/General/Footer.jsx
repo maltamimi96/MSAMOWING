@@ -1,12 +1,16 @@
 import React from "react"
 import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa"
+import { Link } from "react-router-dom"
 import logoSm from "../../assets/logo-sm.png"
+
 function Footer() {
   return (
     <footer className="bg-gray-100 py-12">
-      <div className="container mx-auto px-6 flex flex-wrap">
-        <div className="w-full md:w-1/4 text-center md:text-left">
-          <img src={logoSm} alt="Logo" className="w-fit h-1/2 mb-6" />
+      <div className="container mx-auto px-6 flex flex-wrap gap-8">
+        <div id="nav--logo" className="my-auto w-60">
+          <Link to={"/"}>
+            <img className="" src={logoSm}></img>
+          </Link>
         </div>
         <div className="w-full md:w-1/4 text-gray-600 text-sm md:text-left">
           <h6 className="font-bold text-gray-800 mb-4">Services</h6>

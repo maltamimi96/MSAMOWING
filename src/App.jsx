@@ -11,6 +11,7 @@ import { initialState } from "./Context/initialState"
 import { reducer } from "./Context/reducer"
 import InvoiceGen from "./Components/Admin/InvoiceGen"
 import InvoiceGen2 from "./Components/Admin/InvoiceGen2"
+import CreateCustomer from "./Components/Admin/CreateCustomer"
 function App() {
   const [store, dispatch] = useReducer(reducer, initialState)
 
@@ -26,20 +27,9 @@ function App() {
             <Route path="login" element={<Login />} />
             <Route element={<PrivateRoutes />}>
               <Route path="admin" element={<Admin />}>
-                <Route
-                  path="invoice-gen"
-                  element={
-                    <InvoiceGen
-                      customerName={"test"}
-                      abn={"2323"}
-                      date={"22/22/22"}
-                      address={"test"}
-                      phone={"test"}
-                      services={[1, 2, 3]}
-                    />
-                  }
-                />
-                <Route path="invoice-gen2" element={<InvoiceGen2 />} />
+                <Route path="create-customer" element={<CreateCustomer />} />
+
+                <Route path="invoice-gen" element={<InvoiceGen2 />} />
                 <Route />
               </Route>
             </Route>
