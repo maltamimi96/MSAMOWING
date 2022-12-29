@@ -9,6 +9,23 @@ function InvoiceGen2() {
   const invoiceDateRef = useRef()
   const descriptionRef = useRef()
   const amountRef = useRef()
+  const [total, setTotal] = useState(0)
+  const [sum, setSum] = useState(0)
+  const [inputs, setInputs] = useState([
+    { id: 1, item: "", quantity: 0, amount: 0 },
+  ])
+  const generateInputs = () => {
+    setInputs([
+      ...inputs,
+      { id: inputs.length + 1, item: "", quantity: "", amount: "" },
+    ])
+  }
+  const removeItem = (index) => {
+    const newItems = [...inputs]
+    inputs.splice(index, 1)
+    setInputs(newItems)
+  }
+
   const { loading, error, data, addDocument } = useFirestore()
 
   const [formData, setFormData] = useState({
@@ -17,12 +34,9 @@ function InvoiceGen2() {
     email: "msamowing@gmail.com",
     phone: "+61 493 498 074",
   })
-  const getItemTotal = (quantity, amount) => {
-    return quantity * amount
-  }
-  const getTotal = (items, totalItems) => {
-    return items * totalItems
-  }
+  //   const getItemTotal = (quantity, amount) => {
+  //     return quantity * amount
+  //   }
 
   const handleChange = (e) => {
     setFormData({
@@ -47,6 +61,7 @@ function InvoiceGen2() {
           </h4>
           <h4 className="text-left font-semibold">Phone : +61 493 498 074</h4>
         </div>
+        {/* Client Name Section */}
         <div className="mb-4 flex gap-2">
           <div>
             <label
@@ -99,56 +114,78 @@ function InvoiceGen2() {
         {/* Services Section */}
         <div className="mb-4 flex gap-2">
           <div>
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              for="Item">
-              Item
-            </label>
+            {inputs.map((input, index) => (
+              <div key={input.id} className="flex gap-4">
+                <div className="">
+                  <h4 className="text-sm text-center  ">{index}</h4>
+                </div>
+                <div>
+                  <label
+                    className="block text-gray-700 text-sm font-bold mb-2"
+                    for="Item">
+                    Item
+                  </label>
 
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="invoice-date"
-              type="text"
-              ref={invoiceDateRef}
-              name="item"
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              for="Item">
-              Quantity
-            </label>
+                  <input
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="invoice-date"
+                    type="text"
+                    ref={invoiceDateRef}
+                    name="item"
+                    onChange={handleChange}
+                  />
+                </div>
+                <div>
+                  <label
+                    className="block text-gray-700 text-sm font-bold mb-2"
+                    for="Item">
+                    Quantity
+                  </label>
 
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="quantity"
-              type="number"
-              name="quantity"
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              for="amount">
-              Amount
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="amount"
-              type="number"
-              placeholder="$100.00"
-              ref={amountRef}
-              onChange={handleChange}
-              name="amount"
-            />
-          </div>
-          <div className="m-auto">
-            <button className="text-5xl text-sky-600">+</button>
+                  <input
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="quantity"
+                    type="number"
+                    name="quantity"
+                    onChange={handleChange}
+                  />
+                </div>
+                <div>
+                  <label
+                    className="block text-gray-700 text-sm font-bold mb-2"
+                    for="amount">
+                    Amount
+                  </label>
+                  <input
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="amount"
+                    type="number"
+                    placeholder="$100.00"
+                    ref={amountRef}
+                    onChange={handleChange}
+                    name="amount"
+                  />
+                </div>
+                <div className="m-auto pt-4 flex gap-4">
+                  <h3>Total: {formData?.quantity * formData?.amount || 0}</h3>
+                  {index > 0 && (
+                    <button
+                      onClick={removeItem}
+                      className="text-red-600 text-sm font-light">
+                      remove
+                    </button>
+                  )}
+                </div>
+              </div>
+            ))}
+            <button
+              className="text-5xl text-sky-600 hover:text-red-400"
+              onClick={generateInputs}>
+              +
+            </button>
           </div>
         </div>
+
         <div className="mb-4">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
