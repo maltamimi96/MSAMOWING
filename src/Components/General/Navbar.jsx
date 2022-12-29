@@ -1,17 +1,15 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import {useState } from "react"
-import logoSm from '../../assets/logo-sm.png'
+import React from "react"
+import { Link } from "react-router-dom"
+import { useState } from "react"
+import logoSm from "../../assets/logo-sm.png"
 
+function Navbar({ color }) {
+  const [isNavOpen, setIsNavOpen] = useState(false) // initiate isNavOpen state with false
 
-function Navbar({color}) {
-  const [isNavOpen, setIsNavOpen] = useState(false); // initiate isNavOpen state with false
-
-    return (
-      <div className={`w-full sm:py-4 ${color&&'bg-slate-500'}`}>
-      
-            <nav className="relative container mx-auto p-1 w-full content-center flex justify-between  ">
-                   <section className="MOBILE-MENU flex lg:hidden">
+  return (
+    <div className={`w-full sm:py-4 ${color && "bg-slate-500"}`}>
+      <nav className="relative container mx-auto p-1 w-full content-center flex justify-between  ">
+        <section className="MOBILE-MENU flex lg:hidden">
           <div
             className="HAMBURGER-ICON space-y-2"
             onClick={() => setIsNavOpen((prev) => !prev)} // toggle isNavOpen state on click
@@ -21,7 +19,7 @@ function Navbar({color}) {
             <span className="block h-0.5 w-8 animate-pulse bg-gray-600"></span>
           </div>
 
-            <div className={isNavOpen ? "showMenuNav" : "hideMenuNav"}> 
+          <div className={isNavOpen ? "showMenuNav" : "hideMenuNav"}>
             <div
               className="CROSS-ICON absolute top-0 right-0 px-8 py-8"
               onClick={() => setIsNavOpen(false)} // change isNavOpen state to false to close the menu
@@ -33,18 +31,17 @@ function Navbar({color}) {
                 stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
-                strokeLinejoin="round"
-              >
+                strokeLinejoin="round">
                 <line x1="18" y1="6" x2="6" y2="18" />
                 <line x1="6" y1="6" x2="18" y2="18" />
               </svg>
             </div>
             <ul className="MENU-LINK-MOBILE-OPEN flex flex-col items-center justify-between min-h-[250px]">
-            <li className=" text-2xl text-emerald-800 hover:text-orange-600 border-gray-400 my-8 uppercase">
-                  <Link to="/">Home</Link>
+              <li className=" text-2xl text-emerald-800 hover:text-orange-600 border-gray-400 my-8 uppercase">
+                <Link to="/">Home</Link>
               </li>
               <li className=" text-2xl text-emerald-800 hover:text-orange-600 border-gray-400 my-8 uppercase">
-                  <Link to="/blog/XG13yTumA7E3jhKC5MJC">The Beginning</Link>
+                <Link to="/blog/XG13yTumA7E3jhKC5MJC">The Beginning</Link>
               </li>
               <li className=" text-2xl text-emerald-800 hover:text-orange-600 border-gray-400 my-8 uppercase">
                 <Link to="/maltreatment">Maltreatment</Link>
@@ -62,28 +59,45 @@ function Navbar({color}) {
           </div>
         </section>
 
-                  <div id='nav--logo' className='my-auto w-60' >
-                    <Link to={"/"}><  img className='' src={logoSm} ></img></Link>
+        <div id="nav--logo" className="my-auto w-60">
+          <Link to={"/"}>
+            <img className="" src={logoSm}></img>
+          </Link>
+        </div>
+        <div className="hidden md:flex justify-center gap-5 align-middle">
+          <Link
+            to={"/"}
+            className="text-1xl text-center m-auto text-emerald-500 hover:text-zinc-300">
+            Home
+          </Link>
+          <Link
+            to={"/blog/XG13yTumA7E3jhKC5MJC"}
+            className="text-1xl text-center m-auto text-emerald-500 hover:text-zinc-300">
+            The Beginning
+          </Link>
+          <Link
+            to={"/maltreatment"}
+            className="text-1xl text-center m-auto text-emerald-500 hover:text-zinc-300">
+            Maltreatment
+          </Link>
+          <Link
+            to={"/different-topics"}
+            className="text-1xl text-center m-auto text-emerald-500 hover:text-zinc-300">
+            Different Topics
+          </Link>
+          <Link
+            to={"/contact"}
+            className="text-1xl text-center m-auto text-emerald-500 hover:text-zinc-300">
+            Contact Me
+          </Link>
+          <Link
+            to={"/contact"}
+            className="hidden p-2 px-4 text-1xl 	hover:bg-emerald-400 text-white  text-center bg-emerald-700 rounded md:block my-auto">
+            Tell Your Story
+          </Link>
+        </div>
 
-                  </div>
-                <div className='hidden md:flex justify-center gap-5 align-middle'>
-                  <Link to={"/"} className="text-1xl text-center m-auto text-emerald-500 hover:text-zinc-300">Home</Link>         
-                  <Link to={"/blog/XG13yTumA7E3jhKC5MJC"} className="text-1xl text-center m-auto text-emerald-500 hover:text-zinc-300">The Beginning</Link>         
-                  <Link to={"/maltreatment"} className="text-1xl text-center m-auto text-emerald-500 hover:text-zinc-300">Maltreatment</Link>              
-                  <Link to={"/different-topics"} className="text-1xl text-center m-auto text-emerald-500 hover:text-zinc-300">Different Topics</Link> 
-                  <Link to={"/contact"} className="text-1xl text-center m-auto text-emerald-500 hover:text-zinc-300">Contact Me</Link>              
-                  <Link
-                  to={"/contact"}
-                  className="hidden p-2 px-4 text-1xl 	hover:bg-emerald-400 text-white  text-center bg-emerald-700 rounded md:block my-auto"
-                  
-                  >Tell Your Story</Link >
-                  
-                 
-                </div>
-             
-               
-  
-                <style>{`
+        <style>{`
       .hideMenuNav {
         display: none;
       }
@@ -102,13 +116,9 @@ function Navbar({color}) {
         align-items: center;
       }
     `}</style>
-             
-  
-             
-               
-          </nav>
-      </div>
-        )
-  }
-  
-  export default Navbar
+      </nav>
+    </div>
+  )
+}
+
+export default Navbar
