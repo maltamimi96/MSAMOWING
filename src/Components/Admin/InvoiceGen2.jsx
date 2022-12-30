@@ -172,16 +172,16 @@ function InvoiceGen2() {
                     <button
                       onClick={removeItem}
                       className="text-red-600 text-sm font-light">
-                      remove
+                      - remove
                     </button>
                   )}
                 </div>
               </div>
             ))}
             <button
-              className="text-5xl text-sky-600 hover:text-red-400"
+              className="text-1xl text-sky-600 hover:text-red-400"
               onClick={generateInputs}>
-              +
+              + Add Item
             </button>
           </div>
         </div>

@@ -1,41 +1,48 @@
-import React, { useState, useEffect } from "react"
-
+import React, { useState, useEffect, useRef } from "react"
 import { ToastContainer, toast } from "react-toastify"
-import { useNavigate } from "react-router-dom"
-import { useGlobalState } from "../../Context/stateContext"
 import useFirestore from "../../Hooks/useFirestore"
 function CreateCustomer() {
-  const [selectedValue, setSelectedValue] = useState("")
+  // refs
+  const lastServiceRef = useRef()
+  const nextServiceRef = useRef()
+  //state
   const [formData, setFormData] = useState({})
-  const [date, setDate] = useState(new Date())
+  const [lastService, setLastService] = useState(new Date())
   const [weeks, setWeeks] = useState(1)
+  const [nextService, setNextService] = useState(new Date())
+
+  //custom hooks
   const { loading, error, data, addDocument } = useFirestore()
+  //functions
+
   const handleWeeksChange = (event) => {
     setWeeks(event.target.value)
   }
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    addDocument("Customers", formData)
-    data && toast("Customer Added")
+  const handleLastService = (event) => {
+    setLastService(event.target.value)
   }
+
   const handleChangeForm = (e) => {
     setFormData({
       [e.target.name]: e.target.value,
     })
   }
-  console.log(formData)
-  function handleChange(event) {
-    // Update the selectedValue state variable with the value of the select input
-    setSelectedValue(event.target.value)
-  }
-  const handleDateChange = () => {
-    const currentDate = new Date(event.target.value)
-    const futureDate = new Date()
-    futureDate.setDate(currentDate.getDate() + weeks)
-    setDate(futureDate)
-  }
-  console.log(date)
+  const dateObject = new Date(lastService)
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    addDocument("Customers", formData)
+    data && toast("Customer Added")
+  }
+  const handleLastDay = (event) => {
+    setLastService(new Date(event.target.value))
+  }
+  const handleNextDate = () => {
+    setNextService(new Date(lastService.getTime() + weeks * 7))
+  }
+  const updatedDate = new Date(lastService)
+  updatedDate.setDate(lastService.getDate() + weeks)
+  console.log(updatedDate)
   return (
     <>
       <section className="max-w-xl container m-auto md:max-w-6xl">
@@ -77,34 +84,55 @@ function CreateCustomer() {
             Last Service
           </label>
           <input
-            onChange={handleChangeForm}
             type="date"
             id="title"
-            name="last service"
+            name="last-service"
+            onChange={handleLastDay}
             className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
             placeholder="Customer address"
             required
           />
+          <div className="flex">
+            <div className="m-auto">
+              <label
+                for="Category"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                Service Frequency
+              </label>
+              <select
+                id="collections"
+                onChange={handleWeeksChange}
+                name="frequency"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option value={14}>2 weeks</option>
+                <option value={21}>3 weeks</option>
+                <option value={28}>4 weeks</option>
+                <option value={35}>5 weeks</option>
+                <option value={42}>6 weeks</option>
+                <option value={49}>7 weeks</option>
+              </select>
+            </div>
+            <div className="m-auto">
+              <label
+                htmlFor="Last Service"
+                className="block my-4 text-sm font-medium text-gray-900 dark:text-white">
+                Next Service
+              </label>
+              <input
+                onChange={handleChangeForm}
+                type="text"
+                id="title"
+                name="next-service"
+                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                placeholder="Customer address"
+                required
+                disabled
+              />
+            </div>
+          </div>
+
           <label
-            for="Category"
-            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-            Select an option
-          </label>
-          <select
-            id="collections"
-            requiredvalue={selectedValue}
-            onChange={handleChange}
-            name="provider"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            <option value={14}>2 weeks</option>
-            <option value={21}>3 weeks</option>
-            <option value={28}>4 weeks</option>
-            <option value={35}>5 weeks</option>
-            <option value={42}>6 weeks</option>
-            <option value={49}>7 weeks</option>
-          </select>
-          <label
-            htmlFor="Last Service"
+            htmlFor="notes"
             className="block my-4 text-sm font-medium text-gray-900 dark:text-white">
             Notes
           </label>
@@ -113,7 +141,7 @@ function CreateCustomer() {
             type="date"
             id="title"
             rows={10}
-            name="next service"
+            name="notes"
             className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
             placeholder="Notes"
             required
@@ -122,12 +150,10 @@ function CreateCustomer() {
           <label
             for="Category"
             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-            Select an option
+            Provider
           </label>
           <select
             id="collections"
-            requiredvalue={selectedValue}
-            onChange={handleChange}
             name="provider"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             <option value="NDIS">NDIS</option>
@@ -137,13 +163,11 @@ function CreateCustomer() {
           <label
             for="Category"
             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-            Select an option
+            By:
           </label>
           <select
             id="collections"
-            requiredvalue={selectedValue}
-            onChange={handleChange}
-            name="provider"
+            name="found-by"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             <option value="Ahmad">Ahmad</option>
             <option value="Abdul">Abdul</option>
