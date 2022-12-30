@@ -8,9 +8,8 @@ function CreateCustomer() {
   //state
   const [formData, setFormData] = useState({})
   const [lastService, setLastService] = useState(new Date())
-  const [weeks, setWeeks] = useState(14)
-  const [nextService, setNextService] = useState(lastService)
-
+  const [endDate, setEndDate] = useState()
+  const [weeks, setWeeks] = useState(0)
   //custom hooks
   const { loading, error, data, addDocument } = useFirestore()
   //functions
@@ -18,29 +17,43 @@ function CreateCustomer() {
   const handleWeeksChange = (event) => {
     setWeeks(event.target.value)
   }
-  const handleLastService = (event) => {
-    setLastService(event.target.value)
-  }
+  // const handleLastService = (event) => {
+  //   setLastService(event.target.value)
+  //   const newDate = new Date(lastService)
+  //   newDate.setDate(newDate.getDate() + weeks)
+  //   setNextService(newDate)
+  // }
 
+  function handleChange(event) {
+    // Get the number of days to add from the select input
+
+    // Create a new date by adding the specified number of days to the start date
+    const nextService = new Date(event.target.value)
+    nextService.setDate(nextService.getDate() + Number(weeks))
+    console.log(nextService)
+
+    // Update the state with the new end date
+    setEndDate(nextService)
+  }
+  const handleWeeks = (event) => {
+    setWeeks(event.target.value)
+  }
   const handleChangeForm = (e) => {
     setFormData({
       [e.target.name]: e.target.value,
     })
   }
-  const dateObject = new Date(lastService)
 
   const handleSubmit = (e) => {
     e.preventDefault()
     addDocument("Customers", formData)
     data && toast("Customer Added")
   }
-  const handleLastDay = (event) => {
-    setLastService(new Date(event.target.value))
-  }
+  // useEffect(() => {
+  //   setEndDate(lastService)
+  // }, [])
+
   console.log(weeks)
-  const newDate = new Date(lastService)
-  newDate.setDate(newDate.getDate() + weeks)
-  console.log(newDate)
   return (
     <>
       <section className="max-w-xl container m-auto md:max-w-6xl">
@@ -84,8 +97,8 @@ function CreateCustomer() {
           <input
             type="date"
             id="title"
+            onChange={handleChange}
             name="last-service"
-            onChange={handleLastDay}
             className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
             placeholder="Customer address"
             required
@@ -99,9 +112,10 @@ function CreateCustomer() {
               </label>
               <select
                 id="collections"
-                onChange={handleWeeksChange}
                 name="frequency"
+                onChange={handleWeeks}
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option value={0}>No Return</option>
                 <option value={14}>2 weeks</option>
                 <option value={21}>3 weeks</option>
                 <option value={28}>4 weeks</option>
@@ -120,7 +134,7 @@ function CreateCustomer() {
                 onChange={handleChangeForm}
                 type="text"
                 id="title"
-                value={newDate}
+                value={endDate}
                 name="next-service"
                 className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                 placeholder="Customer address"
