@@ -8,8 +8,8 @@ function CreateCustomer() {
   //state
   const [formData, setFormData] = useState({})
   const [lastService, setLastService] = useState(new Date())
-  const [weeks, setWeeks] = useState(1)
-  const [nextService, setNextService] = useState(new Date())
+  const [weeks, setWeeks] = useState(14)
+  const [nextService, setNextService] = useState(lastService)
 
   //custom hooks
   const { loading, error, data, addDocument } = useFirestore()
@@ -37,12 +37,10 @@ function CreateCustomer() {
   const handleLastDay = (event) => {
     setLastService(new Date(event.target.value))
   }
-  const handleNextDate = () => {
-    setNextService(new Date(lastService.getTime() + weeks * 7))
-  }
-  const updatedDate = new Date(lastService)
-  updatedDate.setDate(lastService.getDate() + weeks)
-  console.log(updatedDate)
+  console.log(weeks)
+  const newDate = new Date(lastService)
+  newDate.setDate(newDate.getDate() + weeks)
+  console.log(newDate)
   return (
     <>
       <section className="max-w-xl container m-auto md:max-w-6xl">
@@ -122,6 +120,7 @@ function CreateCustomer() {
                 onChange={handleChangeForm}
                 type="text"
                 id="title"
+                value={newDate}
                 name="next-service"
                 className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                 placeholder="Customer address"
