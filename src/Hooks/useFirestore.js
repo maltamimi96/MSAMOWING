@@ -24,13 +24,8 @@ function useFirestore() {
       setLoading(false)
     }
   }
-  const createBlog = async (data, col) => {
-    const usersCollectionRef = collection(db, col)
 
-    await addDoc(usersCollectionRef, data)
-  }
-
-  return { loading, error, data, addDocument, createBlog }
+  return { loading, error, data, addDocument }
 }
 
 export default useFirestore

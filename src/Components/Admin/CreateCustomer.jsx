@@ -46,12 +46,7 @@ function CreateCustomer() {
   }
   const handleSubmit = (e) => {
     e.preventDefault()
-    // addDocument("customers", formData).then(() => console.log("done"))
-    const usersCollectionRef = collection(db, "customers")
-    const createBlog = async (data) => {
-      await addDoc(usersCollectionRef, data)
-    }
-    createBlog(formData)
+    addDocument("customers", formData)
       .then(() => {
         toast("Article Added Succesfuly")
       })
