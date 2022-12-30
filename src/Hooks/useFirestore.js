@@ -13,10 +13,9 @@ function useFirestore() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [data, setData] = useState(null)
-  const addDocument = async (collection, data) => {
+  const addDocument = async (colName, data) => {
     try {
-      const ref = collection(db, collection)
-
+      const ref = collection(db, colName)
       await addDoc(ref, data)
       setData(data)
       setLoading(false)
@@ -25,8 +24,13 @@ function useFirestore() {
       setLoading(false)
     }
   }
+  const createBlog = async (data, col) => {
+    const usersCollectionRef = collection(db, col)
 
-  return { loading, error, data, addDocument }
+    await addDoc(usersCollectionRef, data)
+  }
+
+  return { loading, error, data, addDocument, createBlog }
 }
 
 export default useFirestore
