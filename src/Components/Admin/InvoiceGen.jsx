@@ -1,60 +1,94 @@
 import React from "react"
 import logoSm from "../../assets/logo-sm.png"
+import { useState, useEffect } from "react"
 
 function InvoiceGen({ customerName, address, phone, services }) {
+  const [items, setItems] = useState([])
+  const [total, setTotal] = useState(0)
+  const [newItem, setNewItem] = useState({ name: "", quantity: 0, price: 0 })
+  const handleAddItem = (e) => {
+    e.preventDefault()
+    setItems([...items, newItem])
+    setNewItem({})
+  }
+
+  const handleRemoveItem = (id) => {
+    setItems(items.filter((item) => item.id !== id))
+  }
+  useEffect(() => {
+    let newTotal = 0
+    items.forEach((item) => {
+      newTotal += item.data.price * item.data.quantity
+    })
+    setTotal(newTotal)
+  }, [items])
   return (
-    <div className="p-10 font-sans bg-white  min-h-screen">
-      <div className="text-center mb-5">
-        <img src={logoSm} alt="Logo" className="h-12" />
-      </div>
-      <h2 className="text-3xl  font-bold mb-5 text-center">
-        Invoice Generator
-      </h2>
-      <div className="flex justify-between mb-10">
-        <div className="w-1/2">
-          <h3 className="font-bold mb-2">From:</h3>
-        </div>
-        <div className="w-1/2">
-          <h3 className="font-bold mb-2">To:</h3>
-          <div>{customerName}</div>
-          <div>{address}</div>
-          <div>{phone}</div>
-        </div>
-      </div>
-      <table className="rounded w-full border-collapse  mb-10">
-        <thead className="rounded">
+    <div className="container mx-auto px-4 py-8 bg-white">
+      <h1 className="text-3xl font-bold mb-4">Invoice</h1>
+      <form onSubmit={handleAddItem}>
+        <input
+          className="border rounded w-full py-2 px-3 mb-2"
+          type="text"
+          placeholder="Item name"
+          value={newItem.name}
+          onChange={(e) => setNewItem({ ...newItem, name: e.target.value })}
+        />
+        <input
+          className="border rounded w-full py-2 px-3 mb-2"
+          type="number"
+          placeholder="Quantity"
+          value={newItem.quantity}
+          onChange={(e) => setNewItem({ ...newItem, quantity: e.target.value })}
+        />
+        <input
+          className="border rounded w-full py-2 px-3 mb-2"
+          type="number"
+          placeholder="Price"
+          value={newItem.price}
+          onChange={(e) => setNewItem({ ...newItem, price: e.target.value })}
+        />
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          type="submit">
+          Add item
+        </button>
+      </form>
+      <table className="w-full text-left table-collapse">
+        <thead>
           <tr>
-            <th className="border rounded bg-slate-400  px-4 py-2">
-              Description
-            </th>
-            <th className="border rounded bg-slate-400 px-4 py-2">Quantity</th>
-            <th className="border rounded bg-slate-400 px-4 py-2">Price</th>
-            <th className="border rouned bg-slate-400 px-4 py-2">Total</th>
+            <th className="text-sm font-semibold text-grey-darker p-2 bg-grey  )"></th>
           </tr>
         </thead>
         <tbody>
-          <td></td>
+          {items.map((item) => (
+            <tr key={item?.id}>
+              <td className="p-2 border-t border-grey-light">
+                {item?.data.name}
+              </td>
+              <td className="p-2 border-t border-grey-light">
+                {item?.data.quantity}
+              </td>
+              <td className="p-2 border-t border-grey-light">
+                {item?.data.price}
+              </td>
+              <td className="p-2 border-t border-grey-light">
+                {item?.data.price * item.data.quantity}
+              </td>
+              <td className="p-2 border-t border-grey-light">
+                <button
+                  className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                  onClick={() => handleRemoveItem(item.id)}>
+                  Remove
+                </button>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
-      <div className="flex justify-end">
-        <div className="w-1/2 text-right">
-          <div className="font-bold">Subtotal:</div>
-          <div className="font-bold">Tax:</div>
-          <h3 className="font-bold">Total:</h3>
-        </div>
-        {/* <div className="w-1/2">
-          <div>{subtotal}</div>
-          <div>{tax}</div>
-          <h3>{total}</h3>
-        </div> */}
-      </div>
-      <div className="text-center mt-10">
-        <button className="btn btn-primary bg-emerald-400 p-4 rounded-full">
-          Export PDF
-        </button>
+      <div className="mt-8 flex justify-end">
+        <div className="text-2xl font-bold">Total: {total}</div>
       </div>
     </div>
-    // onClick={exportPDF}
   )
 }
 

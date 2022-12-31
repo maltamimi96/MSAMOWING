@@ -1,29 +1,21 @@
-import { useRef, useState } from "react"
+import { useRef, useState, useEffect } from "react"
 import { ToastContainer, toast } from "react-toastify"
 import { useNavigate } from "react-router-dom"
 import useFirestore from "../../Hooks/useFirestore"
 
 function InvoiceGen2() {
-  const clientNameRef = useRef()
-  const invoiceNumberRef = useRef()
-  const invoiceDateRef = useRef()
-  const descriptionRef = useRef()
-  const amountRef = useRef()
+  const [items, setItems] = useState([{ item: "", quantity: 0, amount: 0 }])
+
   const [total, setTotal] = useState(0)
-  const [sum, setSum] = useState(0)
-  const [inputs, setInputs] = useState([
-    { id: 1, item: "", quantity: 0, amount: 0 },
-  ])
-  const generateInputs = () => {
-    setInputs([
-      ...inputs,
-      { id: inputs.length + 1, item: "", quantity: "", amount: "" },
-    ])
+
+  const handleAddItem = (e) => {
+    setItems([...items, { item: "", quantity: 0, amount: 0 }])
   }
-  const removeItem = (index) => {
-    const newItems = [...inputs]
-    inputs.splice(index, 1)
-    setInputs(newItems)
+
+  const handleDelete = (index) => {
+    const newItems = [...items]
+    newItems.splice(index, 1)
+    setItems(newItems)
   }
 
   const { loading, error, data, addDocument } = useFirestore()
@@ -34,9 +26,6 @@ function InvoiceGen2() {
     email: "msamowing@gmail.com",
     phone: "+61 493 498 074",
   })
-  //   const getItemTotal = (quantity, amount) => {
-  //     return quantity * amount
-  //   }
 
   const handleChange = (e) => {
     setFormData({
@@ -44,12 +33,20 @@ function InvoiceGen2() {
       [e.target.name]: e.target.value,
     })
   }
+
   const handleSubmit = (e) => {
     e.preventDefault()
     addDocument("invoices", formData)
-    data && toast("Invoice Generated Successfully")
   }
-  console.log(formData)
+
+  useEffect(() => {
+    let newTotal = 0
+    items.forEach((item) => {
+      newTotal += item.quantity * item.price
+    })
+    setTotal(newTotal)
+  }, [items])
+  console.log(typeof items, "total", total)
   return (
     <section className="bg-white shadow-md rounded px-20 pt-20 pb-8 mb-4 min-h-screen ">
       <form onSubmit={handleSubmit}>
@@ -74,8 +71,6 @@ function InvoiceGen2() {
               id="client-name"
               type="text"
               placeholder="John Doe"
-              ref={clientNameRef}
-              onChange={handleChange}
               name="client-name"
             />
           </div>
@@ -90,8 +85,6 @@ function InvoiceGen2() {
               id="invoice-number"
               type="text"
               placeholder="#123"
-              ref={invoiceNumberRef}
-              onChange={handleChange}
               name="invoice-number"
             />
           </div>
@@ -105,8 +98,6 @@ function InvoiceGen2() {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="invoice-date"
               type="date"
-              ref={invoiceDateRef}
-              onChange={handleChange}
               name="invoice-date"
             />
           </div>
@@ -114,8 +105,8 @@ function InvoiceGen2() {
         {/* Services Section */}
         <div className="mb-4 flex gap-2">
           <div>
-            {inputs.map((input, index) => (
-              <div key={input.id} className="flex gap-4">
+            {items?.map((input, index) => (
+              <div key={input?.id} className="flex gap-4">
                 <div className="">
                   <h4 className="text-sm text-center  ">{index}</h4>
                 </div>
@@ -130,9 +121,8 @@ function InvoiceGen2() {
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="invoice-date"
                     type="text"
-                    ref={invoiceDateRef}
                     name="item"
-                    onChange={handleChange}
+                    value={input?.item}
                   />
                 </div>
                 <div>
@@ -147,7 +137,7 @@ function InvoiceGen2() {
                     id="quantity"
                     type="number"
                     name="quantity"
-                    onChange={handleChange}
+                    value={input?.quantity}
                   />
                 </div>
                 <div>
@@ -161,26 +151,22 @@ function InvoiceGen2() {
                     id="amount"
                     type="number"
                     placeholder="$100.00"
-                    ref={amountRef}
-                    onChange={handleChange}
                     name="amount"
+                    value={input?.amount}
                   />
                 </div>
                 <div className="m-auto pt-4 flex gap-4">
-                  <h3>Total: {formData?.quantity * formData?.amount || 0}</h3>
-                  {index > 0 && (
-                    <button
-                      onClick={removeItem}
-                      className="text-red-600 text-sm font-light">
-                      - remove
-                    </button>
-                  )}
+                  <button
+                    onClick={() => handleDelete(index)}
+                    className="text-red-600 text-sm font-light">
+                    - remove
+                  </button>
                 </div>
               </div>
             ))}
             <button
-              className="text-1xl text-sky-600 hover:text-red-400"
-              onClick={generateInputs}>
+              onClick={handleAddItem}
+              className="text-1xl text-sky-600 hover:text-red-400">
               + Add Item
             </button>
           </div>
@@ -196,7 +182,6 @@ function InvoiceGen2() {
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="description"
             placeholder="Work performed, etc."
-            ref={descriptionRef}
             name="description"
             onChange={handleChange}
           />
@@ -216,6 +201,7 @@ function InvoiceGen2() {
             Generate Invoice
           </button>
         </div>
+        <h3>{total}</h3>
       </form>
       <ToastContainer />
     </section>
