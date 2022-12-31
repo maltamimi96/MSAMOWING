@@ -5,13 +5,13 @@ import useFirestore from "../../Hooks/useFirestore"
 
 function InvoiceGen2() {
   const [items, setItems] = useState([{ item: "", quantity: 0, amount: 0 }])
+  const [newItem, setNewItem] = useState([{ item: "", quantity: 0, amount: 0 }])
 
   const [total, setTotal] = useState(0)
-
-  const handleAddItem = (e) => {
-    setItems([...items, { item: "", quantity: 0, amount: 0 }])
+  const handleAddItem = () => {
+    setItems([...items, newItem])
+    setNewItem({ item: "", quantity: 0, amount: 0 })
   }
-
   const handleDelete = (index) => {
     const newItems = [...items]
     newItems.splice(index, 1)
@@ -19,7 +19,6 @@ function InvoiceGen2() {
   }
 
   const { loading, error, data, addDocument } = useFirestore()
-
   const [formData, setFormData] = useState({
     img: "https://firebasestorage.googleapis.com/v0/b/msa-mowing.appspot.com/o/logo-sm.png?alt=media&token=fa8cffca-f2c1-435f-9e5d-9273eb72513c",
     abn: "ABN : 73 882 493 738",
@@ -38,7 +37,6 @@ function InvoiceGen2() {
     e.preventDefault()
     addDocument("invoices", formData)
   }
-
   useEffect(() => {
     let newTotal = 0
     items.forEach((item) => {
@@ -46,7 +44,8 @@ function InvoiceGen2() {
     })
     setTotal(newTotal)
   }, [items])
-  console.log(typeof items, "total", total)
+
+  console.log("orig", items)
   return (
     <section className="bg-white shadow-md rounded px-20 pt-20 pb-8 mb-4 min-h-screen ">
       <form onSubmit={handleSubmit}>
@@ -122,7 +121,9 @@ function InvoiceGen2() {
                     id="invoice-date"
                     type="text"
                     name="item"
-                    value={input?.item}
+                    onChange={(e) =>
+                      setNewItem({ ...newItem, item: e.target.value })
+                    }
                   />
                 </div>
                 <div>
@@ -137,7 +138,9 @@ function InvoiceGen2() {
                     id="quantity"
                     type="number"
                     name="quantity"
-                    value={input?.quantity}
+                    onChange={(e) =>
+                      setNewItem({ ...newItem, quantity: e.target.value })
+                    }
                   />
                 </div>
                 <div>
@@ -152,7 +155,9 @@ function InvoiceGen2() {
                     type="number"
                     placeholder="$100.00"
                     name="amount"
-                    value={input?.amount}
+                    onChange={(e) =>
+                      setNewItem({ ...newItem, amount: e.target.value })
+                    }
                   />
                 </div>
                 <div className="m-auto pt-4 flex gap-4">
