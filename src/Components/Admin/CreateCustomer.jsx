@@ -71,7 +71,7 @@ function CreateCustomer() {
             placeholder="Customer full name"
             onChange={handleChangeForm}
             required
-            name="customer name"
+            name="customerName"
           />
           <label
             htmlFor="customer name"

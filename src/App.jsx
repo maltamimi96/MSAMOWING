@@ -12,6 +12,7 @@ import { reducer } from "./Context/reducer"
 import InvoiceGen from "./Components/Admin/InvoiceGen"
 import InvoiceGen2 from "./Components/Admin/InvoiceGen2"
 import CreateCustomer from "./Components/Admin/CreateCustomer"
+import AdminViewCustomers from "./Components/Admin/AdminViewCustomers"
 function App() {
   const [store, dispatch] = useReducer(reducer, initialState)
 
@@ -28,7 +29,7 @@ function App() {
             <Route element={<PrivateRoutes />}>
               <Route path="admin" element={<Admin />}>
                 <Route path="create-customer" element={<CreateCustomer />} />
-
+                <Route path="view-customers" element={<AdminViewCustomers />} />
                 <Route path="invoice-gen" element={<InvoiceGen2 />} />
                 <Route />
               </Route>

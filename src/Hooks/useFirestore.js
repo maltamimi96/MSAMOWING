@@ -24,8 +24,19 @@ function useFirestore() {
       setLoading(false)
     }
   }
+  const getDocuments = async (colName) => {
+    try {
+      const ref = collection(db, colName)
+      const documents = await getDocs(ref)
+      setData(documents.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+      setLoading(false)
+    } catch (err) {
+      setError(err)
+      setLoading(false)
+    }
+  }
 
-  return { loading, error, data, addDocument }
+  return { loading, error, data, addDocument, getDocuments }
 }
 
 export default useFirestore
