@@ -2,93 +2,263 @@ import React from "react"
 import logoSm from "../../assets/logo-sm.png"
 import { useState, useEffect } from "react"
 
-function InvoiceGen({ customerName, address, phone, services }) {
+function InvoiceGen() {
+  const [formData, setFormData] = useState({})
   const [items, setItems] = useState([])
   const [total, setTotal] = useState(0)
-  const [newItem, setNewItem] = useState({ name: "", quantity: 0, price: 0 })
-  const handleAddItem = (e) => {
-    e.preventDefault()
-    setItems([...items, newItem])
-    setNewItem({})
+  const [editingIndex, setEditingIndex] = useState(-1)
+
+  function handleChange(event) {
+    const { name, value } = event.target
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }))
+
+    setTotal(calculateTotal())
   }
 
-  const handleRemoveItem = (id) => {
-    setItems(items.filter((item) => item.id !== id))
+  function addItem() {
+    setItems([...items, formData])
+    setFormData({})
+    setEditingIndex(-1)
+  }
+
+  function editItem(index) {
+    setFormData(items[index])
+    setEditingIndex(index)
+  }
+
+  function cancelEdit() {
+    setFormData({})
+    setEditingIndex(-1)
+  }
+
+  function saveEdit() {
+    setItems((prevItems) => {
+      prevItems[editingIndex] = formData
+      return [...prevItems]
+    })
+    setFormData({})
+    setEditingIndex(-1)
+  }
+
+  function removeItem(index) {
+    setItems((prevItems) => prevItems.filter((item, i) => i !== index))
+  }
+
+  function calculateTotal() {
+    return items.reduce((total, item) => {
+      return total + item.quantity * item.price
+    }, 0)
   }
   useEffect(() => {
-    let newTotal = 0
-    items.forEach((item) => {
-      newTotal += item.data.price * item.data.quantity
-    })
-    setTotal(newTotal)
+    setTotal(calculateTotal())
   }, [items])
   return (
-    <div className="container mx-auto px-4 py-8 bg-white">
-      <h1 className="text-3xl font-bold mb-4">Invoice</h1>
-      <form onSubmit={handleAddItem}>
-        <input
-          className="border rounded w-full py-2 px-3 mb-2"
-          type="text"
-          placeholder="Item name"
-          value={newItem.name}
-          onChange={(e) => setNewItem({ ...newItem, name: e.target.value })}
+    <section className="bg-white shadow-md rounded px-20 pt-20 pb-8 mb-4 min-h-screen ">
+      <div className="text-center mb-5">
+        <img
+          src={
+            "https://firebasestorage.googleapis.com/v0/b/msa-mowing.appspot.com/o/logo-sm.png?alt=media&token=fa8cffca-f2c1-435f-9e5d-9273eb72513c"
+          }
+          alt="Logo"
+          className="h-12 mb-4"
         />
-        <input
-          className="border rounded w-full py-2 px-3 mb-2"
-          type="number"
-          placeholder="Quantity"
-          value={newItem.quantity}
-          onChange={(e) => setNewItem({ ...newItem, quantity: e.target.value })}
-        />
-        <input
-          className="border rounded w-full py-2 px-3 mb-2"
-          type="number"
-          placeholder="Price"
-          value={newItem.price}
-          onChange={(e) => setNewItem({ ...newItem, price: e.target.value })}
-        />
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          type="submit">
-          Add item
-        </button>
-      </form>
-      <table className="w-full text-left table-collapse">
-        <thead>
-          <tr>
-            <th className="text-sm font-semibold text-grey-darker p-2 bg-grey  )"></th>
-          </tr>
-        </thead>
-        <tbody>
-          {items.map((item) => (
-            <tr key={item?.id}>
-              <td className="p-2 border-t border-grey-light">
-                {item?.data.name}
-              </td>
-              <td className="p-2 border-t border-grey-light">
-                {item?.data.quantity}
-              </td>
-              <td className="p-2 border-t border-grey-light">
-                {item?.data.price}
-              </td>
-              <td className="p-2 border-t border-grey-light">
-                {item?.data.price * item.data.quantity}
-              </td>
-              <td className="p-2 border-t border-grey-light">
-                <button
-                  className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                  onClick={() => handleRemoveItem(item.id)}>
-                  Remove
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <div className="mt-8 flex justify-end">
-        <div className="text-2xl font-bold">Total: {total}</div>
+        <h4 className="text-left font-semibold">ABN : 73 882 493 738 </h4>
+        <h4 className="text-left font-semibold">Email : msamowing@gmail.com</h4>
+        <h4 className="text-left font-semibold">Phone : +61 493 498 074</h4>
       </div>
-    </div>
+      <div className="mb-4 flex gap-2">
+        <div>
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            for="client-name">
+            Client Name
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="client-name"
+            type="text"
+            placeholder="John Doe"
+            name="client-name"
+          />
+        </div>
+        <div>
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            for="invoice-number">
+            Invoice Number
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="invoice-number"
+            type="text"
+            placeholder="#123"
+            name="invoice-number"
+          />
+        </div>
+        <div>
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            for="invoice-date">
+            Invoice Date
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="invoice-date"
+            type="date"
+            name="invoice-date"
+          />
+        </div>
+      </div>
+      <div className="container mx-auto">
+        {editingIndex === -1 ? (
+          <form className="mb-4 flex gap-2">
+            <label className="block font-bold mb-2">
+              Item Name:
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="text"
+                name="name"
+                value={formData.name || ""}
+                onChange={handleChange}
+                required
+              />
+            </label>
+            <label className="block font-bold mb-2">
+              Quantity:
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="number"
+                name="quantity"
+                value={formData.quantity || 0}
+                onChange={handleChange}
+                required
+              />
+            </label>
+            <label className="block font-bold mb-2">
+              Price:
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="number"
+                name="price"
+                value={formData.price || 0}
+                onChange={handleChange}
+                required
+              />
+            </label>
+            <button
+              className="btn btn-primary mt-4 text-emerald-600 font-semibold"
+              type="button"
+              onClick={addItem}>
+              + Add Item
+            </button>
+          </form>
+        ) : (
+          <form className="mb-4">
+            <label className="block font-bold mb-2">
+              Item Name:
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="text"
+                name="name"
+                value={formData.name || ""}
+                onChange={handleChange}
+              />
+            </label>
+            <label className="block font-bold mb-2">
+              Quantity:
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="number"
+                name="quantity"
+                value={formData.quantity || 0}
+                onChange={handleChange}
+              />
+            </label>
+            <label className="block font-bold mb-2">
+              Price:
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="number"
+                name="price"
+                value={formData.price || 0}
+                onChange={handleChange}
+              />
+            </label>
+            <button
+              className="btn btn-primary mt-4 mr-2"
+              type="button"
+              onClick={saveEdit}>
+              Save
+            </button>
+            <button
+              className="btn btn-secondary mt-4"
+              type="button"
+              onClick={cancelEdit}>
+              Cancel
+            </button>
+          </form>
+        )}
+        <div className="mb-4">
+          {items.map((item, index) => (
+            <div
+              key={index}
+              className="flex gap-2 items-center justify-between py-2 border-b border-gray-200">
+              <span className="font-bold">{item.name}</span>
+              <span className="font-bold">{item.quantity}</span>
+              <span className="font-bold">{item.price}</span>
+              {editingIndex === index ? (
+                <button
+                  className="btn btn-secondary"
+                  type="button"
+                  onClick={cancelEdit}>
+                  Cancel
+                </button>
+              ) : (
+                <>
+                  <button
+                    className="btn btn-secondary mr-2"
+                    type="button"
+                    onClick={() => editItem(index)}>
+                    Edit
+                  </button>
+                  <button
+                    className="btn btn-primary mt-4 text-red-600 font-semibold"
+                    type="button"
+                    onClick={() => removeItem(index)}>
+                    Remove
+                  </button>
+                </>
+              )}
+            </div>
+          ))}
+        </div>
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            for="description">
+            Description
+          </label>
+          <textarea
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="description"
+            placeholder="Work performed, etc."
+            name="description"
+            rows={20}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="flex items-center justify-between py-4 font-bold border-t border-gray-200">
+          <span>Total:</span>
+          <span>{total || 0}</span>
+        </div>
+        <button className="btn btn-primary mt-4 bg-sky-400 rounded-full px-6 py-2 ">
+          Print
+        </button>
+      </div>
+    </section>
   )
 }
 

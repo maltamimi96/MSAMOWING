@@ -4,14 +4,15 @@ import { useNavigate } from "react-router-dom"
 import useFirestore from "../../Hooks/useFirestore"
 
 function InvoiceGen2() {
-  const [items, setItems] = useState([{ item: "", quantity: 0, amount: 0 }])
-  const [newItem, setNewItem] = useState([{ item: "", quantity: 0, amount: 0 }])
-
+  const [items, setItems] = useState([]) // the first item in items array ,it displays by default
+  const [newItem, setNewItem] = useState({ item: "", quantity: 0, amount: 0 }) //this is the new item that should be added to item
   const [total, setTotal] = useState(0)
+
   const handleAddItem = () => {
-    setItems([...items, newItem])
-    setNewItem({ item: "", quantity: 0, amount: 0 })
+    setItems([...items, newItem]) //spreads the items, then adds new item
+    setNewItem({ item: "", quantity: 0, amount: 0 }) //resets the new item to be the empty default
   }
+
   const handleDelete = (index) => {
     const newItems = [...items]
     newItems.splice(index, 1)
@@ -19,12 +20,7 @@ function InvoiceGen2() {
   }
 
   const { loading, error, data, addDocument } = useFirestore()
-  const [formData, setFormData] = useState({
-    img: "https://firebasestorage.googleapis.com/v0/b/msa-mowing.appspot.com/o/logo-sm.png?alt=media&token=fa8cffca-f2c1-435f-9e5d-9273eb72513c",
-    abn: "ABN : 73 882 493 738",
-    email: "msamowing@gmail.com",
-    phone: "+61 493 498 074",
-  })
+  const [formData, setFormData] = useState({})
 
   const handleChange = (e) => {
     setFormData({
@@ -37,21 +33,35 @@ function InvoiceGen2() {
     e.preventDefault()
     addDocument("invoices", formData)
   }
+
   useEffect(() => {
-    let newTotal = 0
-    items.forEach((item) => {
-      newTotal += item.quantity * item.price
+    let newTotal = 0 //starts at 0,place holder variable
+    items.forEach((item, index) => {
+      //loops through items
+      console.log(item)
+      newTotal += item?.quantity * item?.amount // for each item u increment by the  q * a
     })
     setTotal(newTotal)
-  }, [items])
+    setFormData({
+      ...formData,
+      items: items,
+      total: total,
+    })
+  }, [items, total]) // runs whenever items changes
 
-  console.log("orig", items)
+  // console.log("form data is --", formData)
   return (
     <section className="bg-white shadow-md rounded px-20 pt-20 pb-8 mb-4 min-h-screen ">
       <form onSubmit={handleSubmit}>
         <div className="text-center mb-5">
-          <img src={formData?.img} alt="Logo" className="h-12 mb-4" />
-          <h4 className="text-left font-semibold">{formData?.abn} </h4>
+          <img
+            src={
+              "https://firebasestorage.googleapis.com/v0/b/msa-mowing.appspot.com/o/logo-sm.png?alt=media&token=fa8cffca-f2c1-435f-9e5d-9273eb72513c"
+            }
+            alt="Logo"
+            className="h-12 mb-4"
+          />
+          <h4 className="text-left font-semibold">ABN : 73 882 493 738 </h4>
           <h4 className="text-left font-semibold">
             Email : msamowing@gmail.com
           </h4>
@@ -101,13 +111,14 @@ function InvoiceGen2() {
             />
           </div>
         </div>
+
         {/* Services Section */}
         <div className="mb-4 flex gap-2">
           <div>
             {items?.map((input, index) => (
               <div key={input?.id} className="flex gap-4">
                 <div className="">
-                  <h4 className="text-sm text-center  ">{index}</h4>
+                  <h4 className="text-md text-center py-6  ">{index}</h4>
                 </div>
                 <div>
                   <label
@@ -120,10 +131,10 @@ function InvoiceGen2() {
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="invoice-date"
                     type="text"
-                    name="item"
-                    onChange={(e) =>
+                    required
+                    onChange={(e) => {
                       setNewItem({ ...newItem, item: e.target.value })
-                    }
+                    }}
                   />
                 </div>
                 <div>
@@ -137,10 +148,10 @@ function InvoiceGen2() {
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="quantity"
                     type="number"
-                    name="quantity"
-                    onChange={(e) =>
+                    required
+                    onChange={(e) => {
                       setNewItem({ ...newItem, quantity: e.target.value })
-                    }
+                    }}
                   />
                 </div>
                 <div>
@@ -154,10 +165,10 @@ function InvoiceGen2() {
                     id="amount"
                     type="number"
                     placeholder="$100.00"
-                    name="amount"
-                    onChange={(e) =>
+                    required
+                    onChange={(e) => {
                       setNewItem({ ...newItem, amount: e.target.value })
-                    }
+                    }}
                   />
                 </div>
                 <div className="m-auto pt-4 flex gap-4">
@@ -169,6 +180,7 @@ function InvoiceGen2() {
                 </div>
               </div>
             ))}
+
             <button
               onClick={handleAddItem}
               className="text-1xl text-sky-600 hover:text-red-400">
@@ -197,7 +209,7 @@ function InvoiceGen2() {
             for="amount">
             Total
           </label>
-          <h3>Total :$ </h3>
+          <h3 className="text-1xl ">Total : ${total}</h3>
         </div>
         <div className="mb-4">
           <button
@@ -206,9 +218,19 @@ function InvoiceGen2() {
             Generate Invoice
           </button>
         </div>
-        <h3>{total}</h3>
       </form>
       <ToastContainer />
+
+      {items.map((item) => {
+        {
+          Object.entries(item).map(([key, value]) => (
+            <div key={key}>
+              <span>{key}: </span>
+              <span>{value}</span>
+            </div>
+          ))
+        }
+      })}
     </section>
   )
 }
