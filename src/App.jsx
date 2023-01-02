@@ -13,6 +13,7 @@ import InvoiceGen from "./Components/Admin/InvoiceGen"
 import InvoiceGen2 from "./Components/Admin/InvoiceGen2"
 import CreateCustomer from "./Components/Admin/CreateCustomer"
 import AdminViewCustomers from "./Components/Admin/AdminViewCustomers"
+import InvoicePage from "./Pages/InvoicePage"
 function App() {
   const [store, dispatch] = useReducer(reducer, initialState)
 
@@ -31,8 +32,8 @@ function App() {
                 <Route path="create-customer" element={<CreateCustomer />} />
                 <Route path="view-customers" element={<AdminViewCustomers />} />
                 <Route path="invoice-gen" element={<InvoiceGen2 />} />
-                <Route path="invoice-gen" element={<InvoiceGen2 />} />
-
+                <Route path="invoice/:id" element={<InvoicePage />} />
+                
                 <Route />
               </Route>
             </Route>
