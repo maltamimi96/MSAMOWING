@@ -1,13 +1,20 @@
-import { useRef } from "react"
+import { useRef, useCallback } from "react"
 import InvoicePage from "./InvoicePage"
-function invoicePrint() {
-  return (
-    <div>invoicePrint
+import ReactToPrint from "react-to-print"
 
-<ReactToPrint
+function invoicePrint() {
+  const componentRef = useRef(null)
+  const reactToPrintContent = useCallback(() => {
+    return componentRef.current
+  }, [componentRef.current])
+  return (
+    <div>
+      <ReactToPrint
         trigger={() => <button>Print this out!</button>}
-        content={() => componentRef.current}
+        content={reactToPrintContent}
+        documentTitle="AwesomeFileName"
       />
+      <InvoicePage ref={(el) => (componentRef = el)} />
     </div>
   )
 }

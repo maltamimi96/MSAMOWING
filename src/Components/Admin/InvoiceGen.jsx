@@ -87,7 +87,7 @@ function InvoiceGen() {
     e.preventDefault()
     addDocument("invoices", formData)
       .then(() => {
-        toast("Article Added Succesfuly")
+        toast("Invoice Generated Succesfuly")
       })
       .catch((error) => toast(error))
   }
