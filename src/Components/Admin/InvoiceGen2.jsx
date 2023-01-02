@@ -153,7 +153,7 @@ function InvoiceGen2() {
         </div>
         <div className="py-4  border-b border-gray-200 my-20">
           <table className="w-full">
-            <thead className="bg-gray-300 rounded">
+            <thead className="bg-gray-400 rounded">
               <tr>
                 <th className="px-4 py-2">Item</th>
                 <th className="px-4 py-2">Price</th>
