@@ -4,12 +4,13 @@ import { useNavigate } from "react-router-dom"
 import useFirestore from "../../Hooks/useFirestore"
 
 function InvoiceGen2() {
+  const { loading, error, data, addDocument } = useFirestore()
+
   const [formData, setFormData] = useState({
     customerName: "",
     invoiceNumber: "",
     invoiceDate: "",
     dueDate: "",
-
     notes: "",
     items: [],
     total: 0,
@@ -66,6 +67,9 @@ function InvoiceGen2() {
   }
   return (
     <section className="bg-white shadow-md rounded px-20 pt-20 pb-8 mb-4 min-h-screen ">
+      <form onSubmit={handleSubmit}>
+
+      
       <div className="container mx-auto p-4">
         <div className="text-center mb-5">
           <div
@@ -226,13 +230,14 @@ function InvoiceGen2() {
           value={formData.notes}
           onChange={handleChange}
         />
-        <h4>{formData.total}</h4>
+        <h4  className="font-bold">total: <span className="font-light">${formData.total}</span></h4>
       </div>
       <button
         className="btn btn-primary font-semibold mt-4 bg-sky-400 rounded-full px-6 py-2 "
-        onChange={handleSubmit}>
+        type="submit">
         Generate
       </button>
+      </form>
       <ToastContainer />
     </section>
   )
