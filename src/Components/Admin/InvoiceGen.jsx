@@ -10,32 +10,47 @@ function InvoiceGen() {
   const [formData, setFormData] = useState({})
 
   const [items, setItems] = useState([])
+  const [itemInput, setItemInput] = useState({
+    item: "",
+    quantity: 0,
+    price: 0,
+  })
   const [total, setTotal] = useState(0)
   const [editingIndex, setEditingIndex] = useState(-1)
   const [notes, setNotes] = useState("")
   const [dataForm, setDataForm] = useState({
     clientName: "",
-    invoiceNumber: "",
     invoiceDate: "",
-    items: items,
     notes: "",
     total: total,
   })
   const { loading, error, data, addDocument } = useFirestore()
 
+  //gets the input for non items
   function handleChange(event) {
     const { name, value } = event.target
-    setFormData((prevFormData) => ({
+    setDataForm((prevFormData) => ({
       ...prevFormData,
       [name]: value,
     }))
-
-    setTotal(calculateTotal())
   }
-  console.log(items)
+  function handleChangeItems(event) {
+    const { name, value } = event.target
+    setItemInput((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }))
+  }
+
+  const handleItems = () => {}
   function addItem() {
-    setItems([...items, formData])
-    setFormData({})
+    setItems([...items, itemInput])
+    setDataForm({ ...dataForm, items })
+    // setItemInput({
+    //   item: "",
+    //   quantity: 0,
+    //   price: 0,
+    // })
     setEditingIndex(-1)
   }
 
@@ -61,12 +76,13 @@ function InvoiceGen() {
   function removeItem(index) {
     setItems((prevItems) => prevItems.filter((item, i) => i !== index))
   }
-
   function calculateTotal() {
     return items.reduce((total, item) => {
       return total + item.quantity * item.price
     }, 0)
   }
+
+  //Submits Invoice to Invoices
   const handleSubmit = (e) => {
     e.preventDefault()
     addDocument("invoices", formData)
@@ -78,8 +94,10 @@ function InvoiceGen() {
 
   useEffect(() => {
     setTotal(calculateTotal())
-  }, [items])
-  console.log(formData)
+    console.log("useEffect")
+  }, [itemInput])
+
+  console.log(dataForm)
   return (
     <section className="bg-white shadow-md rounded px-20 pt-20 pb-8 mb-4 min-h-screen ">
       <div className="text-center mb-5">
@@ -112,7 +130,7 @@ function InvoiceGen() {
             id="client-name"
             type="text"
             placeholder="John Doe"
-            name="client-name"
+            name="clientName"
             onChange={handleChange}
           />
         </div>
@@ -124,24 +142,24 @@ function InvoiceGen() {
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="invoice-number"
+            id="invoiceNumber"
             type="text"
             placeholder="#123"
-            name="invoice-number"
+            name="invoiceNumber"
             onChange={handleChange}
           />
         </div>
         <div>
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            for="invoice-date">
+            for="invoiceDate">
             Invoice Date
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="invoice-date"
+            id="invoiceDate"
             type="date"
-            name="invoice-date"
+            name="invoiceDate"
             onChange={handleChange}
           />
         </div>
@@ -154,9 +172,9 @@ function InvoiceGen() {
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 type="text"
-                name="name"
-                value={formData.name || ""}
-                onChange={handleChange}
+                name="item"
+                onChange={handleChangeItems}
+                value={itemInput.item}
                 required
               />
             </label>
@@ -166,8 +184,8 @@ function InvoiceGen() {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 type="number"
                 name="quantity"
-                value={formData.quantity || 0}
-                onChange={handleChange}
+                onChange={handleChangeItems}
+                value={itemInput.quantity}
                 required
               />
             </label>
@@ -177,8 +195,8 @@ function InvoiceGen() {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 type="number"
                 name="price"
-                value={formData.price || 0}
-                onChange={handleChange}
+                onChange={handleChangeItems}
+                value={itemInput.price}
                 required
               />
             </label>
@@ -196,9 +214,10 @@ function InvoiceGen() {
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 type="text"
-                name="name"
-                value={formData.name || ""}
-                onChange={handleChange}
+                name="item"
+                onChange={handleChangeItems}
+                value={itemInput.item}
+                required
               />
             </label>
             <label className="block font-bold mb-2">
@@ -207,8 +226,8 @@ function InvoiceGen() {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 type="number"
                 name="quantity"
-                value={formData.quantity || 0}
-                onChange={handleChange}
+                onChange={handleChangeItems}
+                value={itemInput.quantity}
               />
             </label>
             <label className="block font-bold mb-2">
@@ -217,8 +236,8 @@ function InvoiceGen() {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 type="number"
                 name="price"
-                value={formData.price || 0}
-                onChange={handleChange}
+                onChange={handleChangeItems}
+                value={itemInput.price}
               />
             </label>
             <button
@@ -242,7 +261,7 @@ function InvoiceGen() {
               className="flex flex-col gap-4   justify-center py-2 border-b border-gray-200  rounded md:flex-row md:justify-start md:items-center md:gap-20">
               <span className="font-bold  p-4 rounded">
                 item:&nbsp;
-                <span className="font-light"> {item.name || "blank"}</span>
+                <span className="font-light"> {item.item || "blank"}</span>
               </span>
               <span className="font-bold p-4   rounded">
                 quantity:&nbsp;
@@ -289,14 +308,17 @@ function InvoiceGen() {
         <div className="mb-4">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            for="description">
+            for="notes">
             Notes
           </label>
-          <ReactQuill
-            className="block my-4 text-sm font-medium text-zinc-700 "
-            theme="snow"
-            value={notes}
-            onChange={setNotes}
+          <textarea
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="client-name"
+            type="text"
+            placeholder="Payment Details etc..."
+            name="notes"
+            onChange={handleChange}
+            rows={"10"}
           />
         </div>
 

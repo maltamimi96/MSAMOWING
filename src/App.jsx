@@ -30,7 +30,7 @@ function App() {
               <Route path="admin" element={<Admin />}>
                 <Route path="create-customer" element={<CreateCustomer />} />
                 <Route path="view-customers" element={<AdminViewCustomers />} />
-                <Route path="invoice-gen" element={<InvoiceGen />} />
+                <Route path="invoice-gen" element={<InvoiceGen2 />} />
                 <Route />
               </Route>
             </Route>

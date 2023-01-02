@@ -4,233 +4,179 @@ import { useNavigate } from "react-router-dom"
 import useFirestore from "../../Hooks/useFirestore"
 
 function InvoiceGen2() {
-  const [items, setItems] = useState([]) // the first item in items array ,it displays by default
-  const [newItem, setNewItem] = useState({ item: "", quantity: 0, amount: 0 }) //this is the new item that should be added to item
-  const [total, setTotal] = useState(0)
+  const [formData, setFormData] = useState({
+    customerName: "",
+    invoiceNumber: "",
+    invoiceDate: "",
+    notes: "",
+    items: [],
+    total: 0,
+  })
 
-  const handleAddItem = () => {
-    setItems([...items, newItem]) //spreads the items, then adds new item
-    setNewItem({ item: "", quantity: 0, amount: 0 }) //resets the new item to be the empty default
+  function handleChange(event) {
+    const { name, value } = event.target
+    setFormData({ ...formData, [name]: value })
   }
 
-  const handleDelete = (index) => {
-    const newItems = [...items]
-    newItems.splice(index, 1)
-    setItems(newItems)
-  }
-
-  const { loading, error, data, addDocument } = useFirestore()
-  const [formData, setFormData] = useState({})
-
-  const handleChange = (e) => {
+  function handleAddItem() {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      items: [
+        ...formData.items,
+        {
+          name: "",
+          price: "",
+          quantity: "",
+        },
+      ],
     })
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    addDocument("invoices", formData)
+  function handleUpdateItem(index, event) {
+    const { name, value } = event.target
+    const items = [...formData.items]
+    items[index][name] = value
+    setFormData({ ...formData, items })
+  }
+
+  function handleRemoveItem(index) {
+    const items = [...formData.items]
+    items.splice(index, 1)
+    setFormData({ ...formData, items })
   }
 
   useEffect(() => {
-    let newTotal = 0 //starts at 0,place holder variable
-    items.forEach((item, index) => {
-      //loops through items
-      console.log(item)
-      newTotal += item?.quantity * item?.amount // for each item u increment by the  q * a
+    let total = 0
+    formData.items.forEach((item) => {
+      total += item.price * item.quantity
     })
-    setTotal(newTotal)
-    setFormData({
-      ...formData,
-      items: items,
-      total: total,
-    })
-  }, [items, total]) // runs whenever items changes
-
-  // console.log("form data is --", formData)
+    setFormData({ ...formData, total })
+  }, [formData.items])
+  console.log(formData)
   return (
     <section className="bg-white shadow-md rounded px-20 pt-20 pb-8 mb-4 min-h-screen ">
-      <form onSubmit={handleSubmit}>
-        <div className="text-center mb-5">
-          <img
-            src={
-              "https://firebasestorage.googleapis.com/v0/b/msa-mowing.appspot.com/o/logo-sm.png?alt=media&token=fa8cffca-f2c1-435f-9e5d-9273eb72513c"
-            }
-            alt="Logo"
-            className="h-12 mb-4"
-          />
-          <h4 className="text-left font-semibold">ABN : 73 882 493 738 </h4>
-          <h4 className="text-left font-semibold">
-            Email : msamowing@gmail.com
-          </h4>
-          <h4 className="text-left font-semibold">Phone : +61 493 498 074</h4>
-        </div>
-        {/* Client Name Section */}
-        <div className="mb-4 flex gap-2">
-          <div>
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              for="client-name">
-              Client Name
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="client-name"
-              type="text"
-              placeholder="John Doe"
-              name="client-name"
-            />
+      <div className="container mx-auto p-4">
+        <div className="flex items-center justify-between py-4 font-bold border-b border-gray-200">
+          <div className="text-center mb-5">
+            <div
+              className="flex justify-between flex-wrap
+        ">
+              <img
+                src={
+                  "https://firebasestorage.googleapis.com/v0/b/msa-mowing.appspot.com/o/logo-sm.png?alt=media&token=fa8cffca-f2c1-435f-9e5d-9273eb72513c"
+                }
+                alt="Logo"
+                className="h-12 mb-4"
+              />
+              <h1 className="text-6xl uppercase">Invoice</h1>
+            </div>
+
+            <h4 className="text-left font-semibold">ABN : 73 882 493 738 </h4>
+            <h4 className="text-left font-semibold">
+              Email : msamowing@gmail.com
+            </h4>
+            <h4 className="text-left font-semibold">Phone : +61 493 498 074</h4>
           </div>
           <div>
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              for="invoice-number">
-              Invoice Number
-            </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="invoice-number"
               type="text"
-              placeholder="#123"
-              name="invoice-number"
+              name="customerName"
+              placeholder="Customer Name"
+              value={formData.customerName}
+              onChange={handleChange}
             />
-          </div>
-          <div>
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              for="invoice-date">
-              Invoice Date
-            </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="invoice-date"
+              type="text"
+              name="invoiceNumber"
+              placeholder="Invoice #"
+              value={formData.invoiceNumber}
+              onChange={handleChange}
+            />
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               type="date"
-              name="invoice-date"
+              name="invoiceDate"
+              placeholder="Invoice Date"
+              value={formData.invoiceDate}
+              onChange={handleChange}
             />
           </div>
         </div>
-
-        {/* Services Section */}
-        <div className="mb-4 flex gap-2">
-          <div>
-            {items?.map((input, index) => (
-              <div key={input?.id} className="flex gap-4">
-                <div className="">
-                  <h4 className="text-md text-center py-6  ">{index}</h4>
-                </div>
-                <div>
-                  <label
-                    className="block text-gray-700 text-sm font-bold mb-2"
-                    for="Item">
-                    Item
-                  </label>
-
-                  <input
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="invoice-date"
-                    type="text"
-                    required
-                    onChange={(e) => {
-                      setNewItem({ ...newItem, item: e.target.value })
-                    }}
-                  />
-                </div>
-                <div>
-                  <label
-                    className="block text-gray-700 text-sm font-bold mb-2"
-                    for="Item">
-                    Quantity
-                  </label>
-
-                  <input
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="quantity"
-                    type="number"
-                    required
-                    onChange={(e) => {
-                      setNewItem({ ...newItem, quantity: e.target.value })
-                    }}
-                  />
-                </div>
-                <div>
-                  <label
-                    className="block text-gray-700 text-sm font-bold mb-2"
-                    for="amount">
-                    Amount
-                  </label>
-                  <input
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="amount"
-                    type="number"
-                    placeholder="$100.00"
-                    required
-                    onChange={(e) => {
-                      setNewItem({ ...newItem, amount: e.target.value })
-                    }}
-                  />
-                </div>
-                <div className="m-auto pt-4 flex gap-4">
-                  <button
-                    onClick={() => handleDelete(index)}
-                    className="text-red-600 text-sm font-light">
-                    - remove
-                  </button>
-                </div>
-              </div>
-            ))}
-
-            <button
-              onClick={handleAddItem}
-              className="text-1xl text-sky-600 hover:text-red-400">
-              + Add Item
-            </button>
-          </div>
-        </div>
-
-        <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            for="description">
-            Description
-          </label>
+        <div className="py-4 border-b border-gray-200">
           <textarea
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="description"
-            placeholder="Work performed, etc."
-            name="description"
+            name="notes"
+            placeholder="Notes"
+            value={formData.notes}
             onChange={handleChange}
           />
+          <table className="w-full">
+            <thead>
+              <tr>
+                <th className="px-4 py-2">Item</th>
+                <th className="px-4 py-2">Price</th>
+                <th className="px-4 py-2">Quantity</th>
+                <th className="px-4 py-2">Amount</th>
+                <th className="px-4 py-2"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {formData.items.map((item, index) => (
+                <tr key={index}>
+                  <td className="px-4 py-2">
+                    <input
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      type="text"
+                      name="name"
+                      value={item.name}
+                      onChange={(event) => handleUpdateItem(index, event)}
+                    />
+                  </td>
+                  <td className="px-4 py-2">
+                    <input
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      type="number"
+                      name="price"
+                      value={item.price}
+                      onChange={(event) => handleUpdateItem(index, event)}
+                    />
+                  </td>
+                  <td className="px-4 py-2">
+                    <input
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      type="number"
+                      name="quantity"
+                      value={item.quantity}
+                      onChange={(event) => handleUpdateItem(index, event)}
+                    />
+                  </td>
+                  <td className="px-4 py-2">{item.price * item.quantity}</td>
+                  <td className="px-4 py-2">
+                    <button
+                      className="btn btn-link"
+                      onClick={() => handleRemoveItem(index)}>
+                      Remove
+                    </button>
+                  </td>
+                </tr>
+              ))}
+              <tr>
+                <td colSpan="3" className="px-4 py-2 font-bold">
+                  Total
+                </td>
+                <td className="px-4 py-2 font-bold">{formData.total}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            for="amount">
-            Total
-          </label>
-          <h3 className="text-1xl ">Total : ${total}</h3>
-        </div>
-        <div className="mb-4">
-          <button
-            className="bg-emerald-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="submit">
-            Generate Invoice
+        <div className="py-4 flex justify-end">
+          <button className="btn" onClick={handleAddItem}>
+            Add Item
           </button>
         </div>
-      </form>
-      <ToastContainer />
-
-      {items.map((item) => {
-        {
-          Object.entries(item).map(([key, value]) => (
-            <div key={key}>
-              <span>{key}: </span>
-              <span>{value}</span>
-            </div>
-          ))
-        }
-      })}
+      </div>
     </section>
   )
 }
