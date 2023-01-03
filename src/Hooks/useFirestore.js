@@ -6,6 +6,7 @@ import {
   addDoc,
   updateDoc,
   deleteDoc,
+  getDoc,
   doc,
 } from "firebase/firestore"
 
@@ -13,6 +14,8 @@ function useFirestore() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [data, setData] = useState(null)
+  const [document, setDocument] = useState(null)
+
   const addDocument = async (colName, data) => {
     try {
       const ref = collection(db, colName)
@@ -35,8 +38,24 @@ function useFirestore() {
       setLoading(false)
     }
   }
+  const getDocument = async (colName, id) => {
+    const docRef = doc(db, colName, id)
+    await getDoc(docRef)
+      .then((doc) => {
+        setDocument(doc.data())
+      })
+      .catch((error) => console.log(error))
+  }
 
-  return { loading, error, data, addDocument, getDocuments }
+  return {
+    loading,
+    error,
+    data,
+    addDocument,
+    getDocuments,
+    getDocument,
+    document,
+  }
 }
 
 export default useFirestore

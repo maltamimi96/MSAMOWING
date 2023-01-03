@@ -14,7 +14,7 @@ function Card(props) {
         <h4 className="text-sm mb-2 font-light tracking-tight text-gray-800 dark:text-zinc-300">
           {props.phone || "No Phone"}
         </h4>
-        <Link to={"/"} className="text-emerald-400">
+        <Link to={`customer/${props.customerId}`} className="text-emerald-400">
           View Profile
         </Link>
       </div>

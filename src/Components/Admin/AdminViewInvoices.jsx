@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react"
 import useFirestore from "../../Hooks/useFirestore"
 import Card from "../General/card"
-
-function AdminViewCustomers({ category }) {
+import { Link } from "react-router-dom"
+function AdminViewInvoices({ category }) {
   const [customers, setCustomers] = useState([])
   const { loading, error, data, getDocuments } = useFirestore()
 
   useEffect(() => {
-    getDocuments("customers")
+    getDocuments("invoices")
     setCustomers(data)
   }, [])
   console.log(customers)
@@ -23,16 +23,26 @@ function AdminViewCustomers({ category }) {
             <span className="text-emerald-400 text-2xl">{data?.length}</span>
           </p>
         </div>
-        <div className="grid gap-8 lg:grid-cols-1">
-          ={" "}
+        <div className=" rounded px-20 ">
           {data?.map((res) => (
-            <Card
-              key={res?.id}
-              name={res?.customerName}
-              address={res?.address}
-              phone={res?.phone}
-              customerId={res?.id}
-            />
+            <div
+              className="w-fit  bg-gray-200 rounded p-10 "
+              style={{ width: "800px" }}>
+              <div className="flex justify-between">
+                <h1 className="text-1xl uppercase">Invoice</h1>
+                <h1 className="text-1xl uppercase">
+                  Issued: {res.invoiceDate}
+                </h1>
+              </div>
+              <h1 className="text-2xl uppercase">{res.customerName}</h1>
+
+              <span>$:{res.total}</span>
+              <div className="pl-">
+                <Link to={`invoice/${res.id}`} className="text-emerald-600 ">
+                  View Invoice
+                </Link>
+              </div>
+            </div>
           ))}
         </div>
       </div>
@@ -40,4 +50,4 @@ function AdminViewCustomers({ category }) {
   )
 }
 
-export default AdminViewCustomers
+export default AdminViewInvoices

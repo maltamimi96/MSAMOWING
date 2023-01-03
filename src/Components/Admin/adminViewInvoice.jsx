@@ -1,5 +1,5 @@
 function adminViewInvoice() {
-  return <div>adminViewInvoice</div>
+  return <section className=""></section>
 }
 
 export default adminViewInvoice
