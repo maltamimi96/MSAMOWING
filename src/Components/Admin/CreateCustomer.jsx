@@ -48,7 +48,7 @@ function CreateCustomer() {
     e.preventDefault()
     addDocument("customers", formData)
       .then(() => {
-        toast("Article Added Succesfuly")
+        toast("Customer Added Succesfuly")
       })
       .catch((error) => toast(error))
   }
@@ -87,6 +87,40 @@ function CreateCustomer() {
             name="address"
             required
           />
+          <div className="flex flex-col md:flex-row justify-center gap-8">
+            <div>
+              <label
+                htmlFor="customer name"
+                className="block my-4 text-sm font-medium text-gray-900 dark:text-white">
+                Phone
+              </label>
+              <input
+                onChange={handleChangeForm}
+                type="number"
+                id="phone"
+                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                placeholder="Customer address"
+                name="phone"
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="charge"
+                className="block my-4 text-sm font-medium text-gray-900 dark:text-white">
+                $ Charge
+              </label>
+              <input
+                onChange={handleChangeForm}
+                type="number"
+                id="charge"
+                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                placeholder="service charge"
+                name="charge"
+                required
+              />
+            </div>
+          </div>
+
           <label
             htmlFor="Last Service"
             className="block my-4 text-sm font-medium text-gray-900 dark:text-white">

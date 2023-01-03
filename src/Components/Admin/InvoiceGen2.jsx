@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react"
 import { ToastContainer, toast } from "react-toastify"
 import { useNavigate } from "react-router-dom"
 import useFirestore from "../../Hooks/useFirestore"
+import SelectCustomers from "../General/SelectCustomers"
 
 function InvoiceGen2() {
   const { loading, error, data, addDocument } = useFirestore()
@@ -92,10 +93,13 @@ function InvoiceGen2() {
           <div className="flex items-center justify-between py-4 font-bold border-b border-gray-200">
             <div className="flex flex-col md:flex-row md:gap-20">
               <div>
+                <SelectCustomers />
+              </div>
+              <div>
                 <label
                   className="block text-gray-700 text-sm font-bold mb-2"
                   for="client-name">
-                  Client Name
+                  Customer Name
                 </label>
                 <input
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -230,7 +234,7 @@ function InvoiceGen2() {
             onChange={handleChange}
           />
           <h4 className="font-bold">
-            total: <span className="font-light">${formData.total}</span>
+            Total: <span className="font-light">${formData.total}</span>
           </h4>
         </div>
         <button
