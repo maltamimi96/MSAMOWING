@@ -23,7 +23,6 @@ function App() {
     <div className="App">
       <StateContext.Provider value={{ store, dispatch }}>
         <BrowserRouter>
-          <Navbar />
           <Routes>
             <Route path="/" element={<Landing />}></Route>
 

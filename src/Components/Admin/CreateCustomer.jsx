@@ -138,15 +138,15 @@ function CreateCustomer() {
           <div className="flex gap-7">
             <div className="">
               <label
-                for="Category"
-                class="block  text-sm font-medium text-gray-900 dark:text-white">
+                htmlFor="Category"
+                className="block  text-sm font-medium text-gray-900 dark:text-white">
                 Service Frequency
               </label>
               <select
                 id="collections"
                 name="frequency"
                 onChange={handleWeeks}
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option value={0}>No Return</option>
                 <option value={14}>2 weeks</option>
                 <option value={21}>3 weeks</option>
@@ -191,29 +191,29 @@ function CreateCustomer() {
           />
 
           <label
-            for="Category"
-            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            htmlFor="Category"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
             Provider
           </label>
           <select
             id="collections"
             name="provider"
             onChange={handleChangeForm}
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             <option value="NDIS">NDIS</option>
             <option value="PRIVATE">Private</option>
             <option value="HIPAGES">HiPages</option>
           </select>
           <label
-            for="Category"
-            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            htmlFor="Category"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
             By:
           </label>
           <select
             id="collections"
             name="found-by"
             onChange={handleChangeForm}
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             <option value="Ahmad">Ahmad</option>
             <option value="Abdul">Abdul</option>
             <option value="Adam">Adam</option>

@@ -26,6 +26,7 @@ function AdminViewInvoices({ category }) {
         <div className=" rounded px-20 ">
           {data?.map((res) => (
             <div
+              key={res.id}
               className="w-fit  bg-gray-200 rounded p-10 "
               style={{ width: "800px" }}>
               <div className="flex justify-between">
