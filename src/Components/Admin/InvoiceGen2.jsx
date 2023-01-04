@@ -69,8 +69,8 @@ function InvoiceGen2() {
   return (
     <section className="bg-white shadow-md rounded px-20 pt-20 pb-8 mb-4 min-h-screen ">
       <form onSubmit={handleSubmit}>
-        <div className="container mx-auto p-4">
-          <div className="text-center mb-5">
+        <div className="container mx-auto p-10">
+          <div className="text-center mb-5 flex justify-between">
             <div
               className="flex justify-between flex-wrap
         ">
