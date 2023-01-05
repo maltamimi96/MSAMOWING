@@ -5,26 +5,10 @@ function Landing() {
   return (
     <main className="bg-gray-200">
       <HeroSection />
+
       <div className="bg-gradient-to-r from-emerald-400 to-green-600 w-screen h-16 overflow-hidden "></div>
-      <div className="flex mt-10">
-        <img
-          className="w-1/2 "
-          src="https://images.unsplash.com/photo-1594498653385-d5172c532c00?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80"></img>
-        <div className="p-2 flex flex-col gap-4">
-          <h1 className="text-4xl capitalize ">our services</h1>
-          <p className="text-gray-500 text-3xl font-light leading-relaxed  ">
-            Our company offers a wide range of services to help you maintain and
-            improve your property. From lawn mowing and edging to hedge trimming
-            and garden cleaning, we have the expertise and equipment to handle
-            all of your outdoor maintenance needs. We also offer weed treatment
-            and waste removal services to keep your property looking its best.
-            Whether you need one-time services or ongoing maintenance, we have
-            options to suit your needs and budget. Contact us today to learn
-            more and schedule your services.
-          </p>
-        </div>
-      </div>
-      <section className="flex container ">
+
+      <section className="flex container  ">
         <div>
           <div className="">
             <div className="flex flex-wrap items-center justify-center mx-auto py-12">
@@ -153,6 +137,34 @@ export default Landing
       Let us take care of the dirty work with our garden cleaning
       services.
     </p>
+  </div>
+</div>
+</div> */
+}
+
+{
+  /* <div
+class="p-12 text-center relative overflow-hidden bg-no-repeat bg-cover"
+style={{
+  backgroundImage: `url('https://mdbcdn.b-cdn.net/img/new/slides/041.webp')`,
+  height: " 400px",
+}}>
+<div
+  class="absolute top-0 right-0 bottom-0 left-0 w-full h-full overflow-hidden bg-fixed"
+  style={{ backgroundColor: "rgba(0, 0, 0, 0.6)" }}>
+  <div class="flex justify-center items-center h-full">
+    <div class="text-white">
+      <h2 class="font-semibold text-4xl mb-4">Heading</h2>
+      <h4 class="font-semibold text-xl mb-6">Subheading</h4>
+      <a
+        class="inline-block px-7 py-3 mb-1 border-2 border-gray-200 text-gray-200 font-medium text-sm leading-snug uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+        href="#!"
+        role="button"
+        data-mdb-ripple="true"
+        data-mdb-ripple-color="light">
+        Call to action
+      </a>
+    </div>
   </div>
 </div>
 </div> */

@@ -40,7 +40,7 @@ function ContactForm() {
           <div className="sm:col-span-2">
             <label
               htmlfor="message"
-              className="block mb-2 text-sm font-medium text-gray-200 ">
+              className="block mb-2 text-sm font-medium text-gray-200  ">
               Your message
             </label>
             <textarea
@@ -51,7 +51,7 @@ function ContactForm() {
           </div>
           <button
             type="submit"
-            className="py-3 px-5 text-sm font-medium text-center mt-4 text-white bg--500 rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 ">
+            className="py-3 px-5 text-sm font-medium text-center mt-4 text-white  rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 ">
             Send message
           </button>
         </form>

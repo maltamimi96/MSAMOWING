@@ -3,6 +3,8 @@ import Footer from "../General/Footer"
 import mower from "../../assets/mower.png"
 import Navbar from "../../Components/General/Navbar"
 import ContactForm from "./ContactForm"
+import { FaDollarSign } from "react-icons/fa"
+
 const HeroSection = () => {
   return (
     <section
@@ -27,6 +29,13 @@ const HeroSection = () => {
               edging, hedge trimming, and weed control. Contact us today to
               learn more and schedule your services
             </p>
+            <ul>
+              <li>Residential and Commercial Services</li>
+              <li className="flex">
+                <FaDollarSign />
+                Affordable Prices
+              </li>
+            </ul>
             <a
               href="tel:0490688332"
               className="bg-gradient-to-r from-emerald-500 to-green-600 text-2xl px-4 py-2 rounded-2xl capitalize">
