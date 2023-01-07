@@ -9,7 +9,9 @@ function Footer() {
       <div className="container mx-auto px-6 flex flex-wrap gap-8">
         <div id="nav--logo" className="my-auto w-60">
           <Link to={"/"}>
-            <img className="" src={logoSm}></img>
+            <img
+              className="bg-gradient-to-r from-emerald-500 to-green-600 p-1 rounded-xl"
+              src={logoSm}></img>
           </Link>
         </div>
         <div className="w-full md:w-1/4 text-gray-600 text-sm md:text-left">
@@ -28,12 +30,13 @@ function Footer() {
               <a
                 href="mailto:info@example.com"
                 className="text-gray-600 hover:text-gray-800">
-                info@example.com
+                msamowing@gmail.com
               </a>
             </li>
-            <li className="mb-2">(123) 456-7890</li>
-            <li className="mb-2">123 Main Street</li>
-            <li className="mb-2">Anytown, USA 12345</li>
+            <li className="mb-2">
+              <a href="tel:0493498074">0493498074</a>
+            </li>
+            <li className="mb-2">Sydney NSW</li>
           </ul>
         </div>
         <div className="w-full md:w-1/4 text-gray-600 text-sm md:text-left">
@@ -44,11 +47,7 @@ function Footer() {
                 <FaFacebook className="w-6 h-6" />
               </a>
             </li>
-            <li className="mr-4">
-              <a href="#" className="text-gray-600 hover:text-gray-800">
-                <FaTwitter className="w-6 h-6" />
-              </a>
-            </li>
+
             <li className="mr-4">
               <a href="#" className="text-gray-600 hover:text-gray-800">
                 <FaInstagram className="w-6 h-6" />

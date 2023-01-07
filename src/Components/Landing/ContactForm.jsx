@@ -1,8 +1,8 @@
 import React from "react"
-
+import { FaPhone } from "react-icons/fa"
 function ContactForm() {
   return (
-    <section className="bg-gradient-to-r from-emerald-500 to-green-600 rounded-xl drop-shadow-xl	">
+    <section className="bg-gradient-to-r from-emerald-500 to-green-600 rounded-xl drop-shadow-xl 	">
       <div className="py-8 lg:py-4 px-4 mx-auto max-w-screen-md">
         <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-200 ">
           Get a Qoute
@@ -55,6 +55,10 @@ function ContactForm() {
             Send message
           </button>
         </form>
+      </div>
+      <div className="flex justify-center container m-auto md:text-3xl shadow-md">
+        <FaPhone />
+        <h3>CALL NOW 0493498074</h3>
       </div>
     </section>
   )
