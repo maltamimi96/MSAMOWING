@@ -2,8 +2,10 @@ import React from "react"
 import { FaPhone } from "react-icons/fa"
 function ContactForm() {
   return (
-    <section className="bg-gradient-to-r from-emerald-500 to-green-600 rounded-xl drop-shadow-xl 	">
-      <div className="py-8 lg:py-4 px-4 mx-auto max-w-screen-md">
+    <section
+      style={{ minWidth: "450px", height: "500px" }}
+      className="bg-gradient-to-r from-emerald-500 to-green-600 rounded-xl drop-shadow-xl  p-4 	">
+      <div className=" ">
         <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-200 ">
           Get a Qoute
         </h2>
@@ -51,14 +53,10 @@ function ContactForm() {
           </div>
           <button
             type="submit"
-            className="py-3 px-5 text-sm font-medium text-center mt-4 text-white  rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 ">
-            Send message
+            className="py-3 bg-sky-600 px-5 text-sm font-medium text-center mt-4 text-white  rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 ">
+            Send Enquiry
           </button>
         </form>
-      </div>
-      <div className="flex justify-center container m-auto md:text-3xl shadow-md">
-        <FaPhone />
-        <h3>CALL NOW 0493498074</h3>
       </div>
     </section>
   )

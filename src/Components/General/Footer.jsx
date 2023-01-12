@@ -10,7 +10,7 @@ function Footer() {
         <div id="nav--logo" className="my-auto w-60">
           <Link to={"/"}>
             <img
-              className="bg-gradient-to-r from-emerald-500 to-green-600 p-1 rounded-xl"
+              className="bg-gradient-to-r from-emerald-500 to-green-600 p-2 rounded-xl"
               src={logoSm}></img>
           </Link>
         </div>

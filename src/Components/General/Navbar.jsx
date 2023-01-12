@@ -38,7 +38,7 @@ function Navbar({ color }) {
             </div>
             <ul className="MENU-LINK-MOBILE-OPEN flex flex-col items-center justify-between min-h-[250px]">
               <li className=" text-2xl text-emerald-800 hover:text-orange-600 border-gray-400 my-8 uppercase">
-                <Link to="/">Gallery</Link>
+                0 <Link to="/">Gallery</Link>
               </li>
             </ul>
           </div>
@@ -47,24 +47,24 @@ function Navbar({ color }) {
         <div id="nav--logo" className="my-auto w-60">
           <Link to={"/"}>
             <img
-              className=" bg-gradient-to-r from-emerald-500 to-green-600 p-1 rounded-xl"
+              className=" bg-gradient-to-r from-emerald-500 to-green-600 p-2 rounded-xl"
               src={logoSm}></img>
           </Link>
         </div>
-        <div className="hidden md:flex justify-center gap-5 align-middle">
+        <div className="hidden md:flex justify-center gap-5 align-middle text-white">
           <Link
             to={"/"}
-            className="text-1xl font-semibold text-center m-auto text-white bg-gradient-to-r from-emerald-500 to-green-600 rounded-xl px-2 py-1 hover:text-sky-300">
+            className="text-1xl font-semibold text-center m-auto  bg-gradient-to-r from-emerald-500 to-green-600 rounded-xl px-2 py-1 hover:text-sky-300">
             Contact
           </Link>
           <Link
             to={"/"}
-            className="text-1xl font-semibold text-center m-auto text-white bg-gradient-to-r from-emerald-500 to-green-600 rounded-xl px-2 py-1 hover:text-sky-300">
+            className="text-1xl font-semibold text-center m-auto  bg-gradient-to-r from-emerald-500 to-green-600 rounded-xl px-2 py-1 hover:text-sky-300">
             Gallery
           </Link>{" "}
           <Link
             to={"/"}
-            className="text-1xl font-semibold text-center m-auto text-white bg-gradient-to-r from-emerald-500 to-green-600 rounded-xl px-2 py-1 hover:text-sky-300">
+            className="text-1xl font-semibold text-center m-auto bg-gradient-to-r from-emerald-500 to-green-600 rounded-xl px-2 py-1 hover:text-sky-300">
             Services
           </Link>
         </div>

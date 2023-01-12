@@ -9,8 +9,13 @@ import {
   FaMapMarkerAlt,
   FaUserFriends,
   FaToolbox,
-  FaPhone,
+  FaPhoneAlt,
+  FaWhatsapp,
+  FaInstagram,
+  FaFacebook,
+  FaQuoteRight,
 } from "react-icons/fa"
+
 import micn from "../../assets/micn.png"
 const HeroSection = () => {
   const areas = [
@@ -36,54 +41,65 @@ const HeroSection = () => {
 
   return (
     <section
-      className="min-h-screen bg-cover bg-blend-multiply flex flex-col justify-between 	 bg-slate-300  "
+      className="min-h-screen bg-cover bg-blend-multiply  flex flex-col justify-between bg-slate-300  "
       style={{
         backgroundImage: `url(https://images.unsplash.com/photo-1560426961-4aa4cdcb7edc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80)`,
       }}>
-      <Navbar />
-      <div className=" py-24 bg-cover	  flex justify-center  ">
-        <div className="container text-zinc-100    flex flex-col  gap-6 md:flex-row ">
-          <div className="pb-40 md:w-10/12">
-            <h1 className="text-5xl font-bold mb-4">Lawn Mowing Services</h1>
+      {/* <div className="bg-gradient-to-r from-emerald-400 to-green-600 w-screen h-16 overflow-hidden hidden md:flex text-white justify-around text-4xl ">
+        <div className="flex gap-2 p-2">
+          <h2>GET A QUOUTE NOW</h2>
+          <FaQuoteRight />
+        </div>
+        <div className="flex gap-10  p-2">
+          <h2>Find us on </h2>
+          <FaWhatsapp />
+          <FaFacebook />
+          <FaInstagram />
+        </div>
+        <div className="flex gap-2  p-2">
+          <FaPhoneAlt />
+          <h2>0493498074</h2>
+        </div>
+      </div> */}
 
-            <ul className="text-2xl flex flex-col gap-2 capitalize">
-              <li className="flex  gap-1 ">
-                <FaToolbox className="mt-1" />
-                Residential & Commercial Services
-              </li>
-              <li className="flex gap-1 ">
-                <FaRegCalendarCheck className="mt-1" />
-                Affordable Prices
-              </li>
-              <li className="flex gap-1 ">
-                <FaMapMarkerAlt className="mt-1" />
-                Family Owned Local Business
-              </li>
-              <li className="flex gap-1 ">
-                <FaUserFriends className="mt-1" />
-                Professional Team
-              </li>
-            </ul>
-            {/* <a
-              href="tel:0490688332"
-              className="bg-gradient-to-r from-emerald-500 to-green-600 text-2xl px-4 py-2 rounded-2xl capitalize">
-              call us now
-            </a>
-            <a href="#" className=" text-2xl px-4 py-2 rounded-2xl capitalize">
-              View Services
-            </a> */}
-          </div>
-          <div className="w-96 md:w-1/2">
-            <ContactForm />
-          </div>
-          <div className="w"></div>
+      <Navbar />
+      <div className=" bg-cover mb-6 flex flex-col  justify-between container mx-auto  text-zinc-100 md:flex-row  md:mb-0  ">
+        <div className="flex flex-col  md:justify-start">
+          <h1 className="text-5xl font-bold mb-4">Lawn Services</h1>
+          <h2 className="text-2xl mb-4">
+            MSA Mowing is a reliable and professional lawn care service that
+            provides a wide range of services to keep your lawn looking healthy
+            and beautiful
+          </h2>
+          <ul className="text-2xl flex flex-col gap-2 md:pl-4 capitalize">
+            <li className="flex  gap-1 ">
+              <FaToolbox className="mt-1" />
+              Residential & Commercial Services
+            </li>
+            <li className="flex gap-1 ">
+              <FaRegCalendarCheck className="mt-1" />
+              Affordable Prices
+            </li>
+            <li className="flex gap-1 ">
+              <FaMapMarkerAlt className="mt-1" />
+              Family Owned Local Business
+            </li>
+            <li className="flex gap-1 ">
+              <FaUserFriends className="mt-1" />
+              Professional Team
+            </li>
+          </ul>
+        </div>
+        <div className="mt-6">
+          <ContactForm />
         </div>
       </div>
-      <div className="bg-zinc-700/50 	 w-screen h-fit p-4">
-        <h1 className="text-center md:text-4xl uppercase text-gray-200 mb-4">
+
+      <div className="bg-zinc-700/50 	 w-screen h-fit p-4 text-white">
+        <h1 className="text-center md:text-4xl uppercase text-gray-200 mb-4 ">
           Area Of Service
         </h1>
-        <ul className="flex flex-wrap gap-2 justify-center">
+        <ul className="flex flex-wrap  gap-2 justify-center">
           <li>
             <FaMapMarkerAlt className="text-4xl" />
           </li>
