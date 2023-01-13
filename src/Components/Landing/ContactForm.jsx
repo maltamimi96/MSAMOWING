@@ -1,0 +1,65 @@
+import React from "react"
+import { FaPhone } from "react-icons/fa"
+function ContactForm() {
+  return (
+    <section
+      style={{ minWidth: "450px", height: "500px" }}
+      className="bg-gradient-to-r from-emerald-500 to-green-600 rounded-xl drop-shadow-xl  p-4 	">
+      <div className=" ">
+        <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-200 ">
+          Get a Qoute
+        </h2>
+
+        <form action="#" classname="space-y-10 ">
+          <div>
+            <label
+              htmlfor="email"
+              className="block mb-2 text-sm font-medium text-gray-200 ">
+              Your email
+            </label>
+            <input
+              type="email"
+              id="email"
+              className="shadow-sm bg-gray-50 border border-gray-300 text-gray-200 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+              placeholder="email@service.com"
+              required
+            />
+          </div>
+          <div>
+            <label
+              htmlfor="subject"
+              className="block mb-2 text-sm font-medium text-gray-200 ">
+              Subject
+            </label>
+            <input
+              type="text"
+              id="subject"
+              className="block p-3 w-full text-sm text-gray-200 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 "
+              placeholder="Let us know how we can help you"
+              required
+            />
+          </div>
+          <div className="sm:col-span-2">
+            <label
+              htmlfor="message"
+              className="block mb-2 text-sm font-medium text-gray-200  ">
+              Your message
+            </label>
+            <textarea
+              id="message"
+              rows="6"
+              className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 "
+              placeholder="Your Enquiry..."></textarea>
+          </div>
+          <button
+            type="submit"
+            className="py-3 bg-sky-600 px-5 text-sm font-medium text-center mt-4 text-white  rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 ">
+            Send Enquiry
+          </button>
+        </form>
+      </div>
+    </section>
+  )
+}
+
+export default ContactForm
