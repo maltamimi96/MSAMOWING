@@ -17,7 +17,7 @@ import {
 } from "react-icons/fa"
 
 import micn from "../../assets/micn.png"
-const HeroSection = () => {
+function HeroSection(props) {
   const areas = [
     "Bankstown",
     "Roselands",

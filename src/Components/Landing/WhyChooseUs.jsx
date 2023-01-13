@@ -1,5 +1,5 @@
 import React from "react"
-import { FaCheckCircle, FaGrinWink } from "react-icons/fa"
+import { FaCheckCircle } from "react-icons/fa"
 import grass from "../../assets/footer.jpg"
 
 const WhyChooseUs = () => {
