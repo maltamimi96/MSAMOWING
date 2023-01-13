@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import useFirestore from "../../Hooks/useFirestore"
-import Card from "../General/card"
+import Card from "../General/Card"
 import { Link } from "react-router-dom"
 function AdminViewInvoices({ category }) {
   const [customers, setCustomers] = useState([])
