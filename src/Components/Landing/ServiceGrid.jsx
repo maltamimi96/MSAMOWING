@@ -3,6 +3,8 @@ import ServiceCard from "./ServiceCard"
 import cleaning from "../../assets/cleaning.png"
 import hedge from "../../assets/hedge.png"
 import rubbish from "../../assets/rubbish.png"
+import weed from "../../assets/weed.png"
+import snipper from "../../assets/snipper.png"
 
 function ServiceGrid() {
   return (
@@ -18,7 +20,7 @@ function ServiceGrid() {
           title="Edging"
           description="    Get crisp and clean edges around your lawn and garden beds with our
           edging services."
-          url="https://images.unsplash.com/photo-1635614986085-bf0d7a4ae4da?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+          url={snipper}
         />
         <ServiceCard
           title="Hedge Trimming"
@@ -30,7 +32,7 @@ function ServiceGrid() {
           title="Weed Treatment"
           description="Eliminate weeds and prevent them from coming back with our weed
           treatment services."
-          url="https://images.unsplash.com/photo-1635614986085-bf0d7a4ae4da?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+          url={weed}
         />
         <ServiceCard
           title="Waste Removal"

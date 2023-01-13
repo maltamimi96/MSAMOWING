@@ -41,9 +41,9 @@ const HeroSection = () => {
 
   return (
     <section
-      className="min-h-screen bg-cover bg-blend-multiply  flex flex-col justify-between bg-slate-300  "
+      className="min-h-screen bg-cover bg-center	 bg-blend-multiply  flex flex-col justify-between bg-slate-300  "
       style={{
-        backgroundImage: `url(https://images.unsplash.com/photo-1560426961-4aa4cdcb7edc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80)`,
+        backgroundImage: `url(https://images.unsplash.com/photo-1559702971-54d4089fc5a5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80)`,
       }}>
       {/* <div className="bg-gradient-to-r from-emerald-400 to-green-600 w-screen h-16 overflow-hidden hidden md:flex text-white justify-around text-4xl ">
         <div className="flex gap-2 p-2">
@@ -96,7 +96,7 @@ const HeroSection = () => {
       </div>
 
       <div className="bg-zinc-700/50 	 w-screen h-fit p-4 text-white">
-        <h1 className="text-center md:text-4xl uppercase text-gray-200 mb-4 ">
+        <h1 className="text-center md:text-2xl capitalise text-gray-200 mb-4 ">
           Area Of Service
         </h1>
         <ul className="flex flex-wrap  gap-2 justify-center">
@@ -104,7 +104,7 @@ const HeroSection = () => {
             <FaMapMarkerAlt className="text-4xl" />
           </li>
           {areas.map((lg) => (
-            <li className="bg-gradient-to-r from-blue-500 to-blue-600 rounded p-2 text-white font-semibold">
+            <li className="bg-gradient-to-r text-1xl rounded p-2 text-white font-semibold">
               {lg}
             </li>
           ))}
