@@ -1,6 +1,5 @@
 import React from "react"
 import { FaCheckCircle } from "react-icons/fa"
-import grass from "../../assets/footer.jpg"
 
 const WhyChooseUs = () => {
   return (
@@ -9,22 +8,24 @@ const WhyChooseUs = () => {
       style={{
         backgroundImage: `url(https://images.unsplash.com/photo-1560426961-4aa4cdcb7edc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80)`,
       }}>
-      <div className="container m-auto text-white">
-        <h2 className="text-5xl font-medium mb-20 text-center text-green-400">
+      <div className="container m-auto text-white p-6">
+        <h2 className="text-5xl font-medium mb-20 text-center text-green-400 contrast-150">
           Why Choose MSA Mowing
         </h2>
 
-        <div className="my-20">
+        <div className="my-10">
           <div className="flex flex-wrap justify-center gap-8 ">
             <div className=" flex">
               <FaCheckCircle className="text-green-500 mr-2 text-2xl" />
-              <span className="text-2xl font-medium">
+              <span className="text-2xl font-medium text-center">
                 Reliable and professional service
               </span>
             </div>
             <div className=" flex">
-              <FaCheckCircle className="text-green-500 mr-2 text-2xl" />
-              <span className="text-2xl font-medium">Flexible scheduling</span>
+              <FaCheckCircle className="text-green-500 mr-2 text-2xl text-center" />
+              <span className="text-2xl font-medium text-center">
+                Flexible scheduling
+              </span>
             </div>
             <div className=" flex">
               <FaCheckCircle className="text-green-500 mr-2 text-2xl" />
@@ -36,8 +37,8 @@ const WhyChooseUs = () => {
             </div>
           </div>
         </div>
-        <div className="my-4">
-          <p className="text-xl font-medium leading-loose text-center text-justify">
+        <div className=" md:px-20">
+          <p className="text-2xl font-medium md:leading-loose ">
             At MSA Mowing, we understand the importance of maintaining a
             beautiful lawn. That's why we offer a wide range of services to
             ensure your lawn looks its best all year round. From regular lawn
@@ -56,7 +57,7 @@ const WhyChooseUs = () => {
           </p>
         </div>
         <div className="text-center my-4">
-          <span className="text-xl font-medium">
+          <span className="text-xl font-bold shad  text-green-500 contrast-150">
             We guarantee you'll love your lawn!
           </span>
         </div>

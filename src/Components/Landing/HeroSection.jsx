@@ -17,6 +17,7 @@ import {
 } from "react-icons/fa"
 
 import micn from "../../assets/micn.png"
+import { Link } from "react-router-dom"
 function HeroSection(props) {
   const areas = [
     "Bankstown",
@@ -41,9 +42,9 @@ function HeroSection(props) {
 
   return (
     <section
-      className="min-h-screen bg-cover bg-center	 bg-blend-multiply  flex flex-col justify-between bg-slate-300  "
+      className="min-h-screen bg-cover 	 bg-blend-multiply  flex flex-col  justify-between bg-green-300 brightness-90 contrast-125   md:bg-center     "
       style={{
-        backgroundImage: `url(https://images.unsplash.com/photo-1559702971-54d4089fc5a5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80)`,
+        backgroundImage: `url(https://images.unsplash.com/photo-1558337587-80f6bbf67e01?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80)`,
       }}>
       {/* <div className="bg-gradient-to-r from-emerald-400 to-green-600 w-screen h-16 overflow-hidden hidden md:flex text-white justify-around text-4xl ">
         <div className="flex gap-2 p-2">
@@ -63,15 +64,20 @@ function HeroSection(props) {
       </div> */}
 
       <Navbar />
-      <div className=" bg-cover mb-6 flex flex-col  justify-between container mx-auto  text-zinc-100 md:flex-row  md:mb-0  ">
-        <div className="flex flex-col  md:justify-start">
-          <h1 className="text-5xl font-bold mb-4">Lawn Services</h1>
-          <h2 className="text-2xl mb-4">
+      <div className=" bg-cover mb-6 flex flex-col-reverse  justify-between container  p-6 md:mx-auto md:p-0 md:gap-40  text-zinc-100 md:flex-row  md:mb-4 md:my-10   ">
+        <div className="mt-6 md:mt-0 md:w-1/3 ">
+          <ContactForm />
+        </div>
+        <div className="flex flex-col  md:justify-start md:w-1/2 ">
+          <h1 className="text-6xl font-bold mb-4">
+            Professional Lawn Services
+          </h1>
+          <h2 className="text-3xl mb-4 font-sans">
             MSA Mowing is a reliable and professional lawn care service that
             provides a wide range of services to keep your lawn looking healthy
             and beautiful
           </h2>
-          <ul className="text-2xl flex flex-col gap-2 md:pl-4 capitalize">
+          <ul className="text-3xl flex flex-col gap-2 md:pl-4 capitalize">
             <li className="flex  gap-1 ">
               <FaToolbox className="mt-1" />
               Residential & Commercial Services
@@ -89,9 +95,6 @@ function HeroSection(props) {
               Professional Team
             </li>
           </ul>
-        </div>
-        <div className="mt-6">
-          <ContactForm />
         </div>
       </div>
 

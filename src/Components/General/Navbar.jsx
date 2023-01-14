@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "react-router-dom"
 import { useState } from "react"
 import logoSm from "../../assets/logo-sm.png"
+import { FaPhone } from "react-icons/fa"
 
 function Navbar({ color }) {
   const [isNavOpen, setIsNavOpen] = useState(false) // initiate isNavOpen state with false
@@ -38,7 +39,7 @@ function Navbar({ color }) {
             </div>
             <ul className="MENU-LINK-MOBILE-OPEN flex flex-col items-center justify-between min-h-[250px]">
               <li className=" text-2xl text-emerald-800 hover:text-orange-600 border-gray-400 my-8 uppercase">
-                0 <Link to="/">Gallery</Link>
+                <Link to="/">Gallery</Link>
               </li>
             </ul>
           </div>
@@ -54,17 +55,17 @@ function Navbar({ color }) {
         <div className="hidden md:flex justify-center gap-5 align-middle text-white">
           <Link
             to={"/"}
-            className="text-1xl font-semibold text-center m-auto  bg-gradient-to-r from-emerald-500 to-green-600 rounded-xl px-2 py-1 hover:text-sky-300">
+            className="text-1xl font-semibold text-center m-auto  bg-gradient-to-r from-green-500 to-green-600 rounded-xl px-4 py-2 hover:text-sky-300">
             Contact
           </Link>
           <Link
             to={"/"}
-            className="text-1xl font-semibold text-center m-auto  bg-gradient-to-r from-emerald-500 to-green-600 rounded-xl px-2 py-1 hover:text-sky-300">
+            className="text-1xl font-semibold text-center m-auto  bg-gradient-to-r from-green-500 to-green-600 rounded-xl px-4 py-2 hover:text-sky-300">
             Gallery
           </Link>{" "}
           <Link
             to={"/"}
-            className="text-1xl font-semibold text-center m-auto bg-gradient-to-r from-emerald-500 to-green-600 rounded-xl px-2 py-1 hover:text-sky-300">
+            className="text-1xl font-semibold text-center m-auto bg-gradient-to-r from-green-500 to-green-600 rounded-xl px-4 py-2 hover:text-sky-300">
             Services
           </Link>
         </div>

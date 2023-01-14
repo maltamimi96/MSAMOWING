@@ -6,7 +6,7 @@ import WhyChooseUs from "../Components/Landing/WhyChooseUs"
 
 function Landing() {
   return (
-    <main className="bg-gray-200">
+    <main className="bg-gray-300 		">
       <HeroSection />
 
       <div className="bg-gradient-to-r from-emerald-400 to-green-600 w-screen h-16 overflow-hidden text-center text-3xl p-2 font-medium  ">

@@ -9,7 +9,7 @@ import snipper from "../../assets/snipper.png"
 function ServiceGrid() {
   return (
     <section className="py-4">
-      <div className="flex flex-col gap-10 flex-wrap  items-center justify-center mx-auto   container m-auto md:flex-row">
+      <div className="flex flex-col gap-10 flex-wrap  items-center justify-center mx-auto p-6   container m-auto md:flex-row md:p-0">
         <ServiceCard
           title="Lawn Mowing"
           description="Keep your lawn looking neat and tidy with our professional mowing
