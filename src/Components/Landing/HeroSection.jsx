@@ -42,7 +42,7 @@ function HeroSection(props) {
 
   return (
     <section
-      className="min-h-screen bg-cover 	 bg-blend-multiply  flex flex-col  justify-between bg-green-300 brightness-90 contrast-125   md:bg-center     "
+      className="min-h-screen bg-cover 	 bg-blend-multiply  flex flex-col brightness-90  justify-between bg-green-300 md:brightness-90 md:contrast-125   md:bg-center     "
       style={{
         backgroundImage: `url(https://images.unsplash.com/photo-1558337587-80f6bbf67e01?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80)`,
       }}>
@@ -69,15 +69,15 @@ function HeroSection(props) {
           <ContactForm />
         </div>
         <div className="flex flex-col  md:justify-start md:w-1/2 ">
-          <h1 className="text-6xl font-bold mb-4">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4">
             Professional Lawn Services
           </h1>
-          <h2 className="text-3xl mb-4 font-sans">
+          <h2 className="text-2xl md:text-3xl mb-4 font-sans">
             MSA Mowing is a reliable and professional lawn care service that
             provides a wide range of services to keep your lawn looking healthy
             and beautiful
           </h2>
-          <ul className="text-3xl flex flex-col gap-2 md:pl-4 capitalize">
+          <ul className="text-2xl md:text-3xl flex flex-col gap-2 md:pl-4 capitalize">
             <li className="flex  gap-1 ">
               <FaToolbox className="mt-1" />
               Residential & Commercial Services
@@ -102,10 +102,7 @@ function HeroSection(props) {
         <h1 className="text-center md:text-2xl capitalise text-gray-200 mb-4 ">
           Area Of Service
         </h1>
-        <ul className="flex flex-wrap  gap-2 justify-center">
-          <li>
-            <FaMapMarkerAlt className="text-4xl" />
-          </li>
+        <ul className="flex flex-wrap  md:gap-2 justify-center">
           {areas.map((lg) => (
             <li className="bg-gradient-to-r text-1xl rounded p-2 text-white font-semibold">
               {lg}
