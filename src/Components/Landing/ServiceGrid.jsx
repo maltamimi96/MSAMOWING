@@ -9,6 +9,11 @@ import snipper from "../../assets/snipper.png"
 function ServiceGrid() {
   return (
     <section className="py-4">
+      <div>
+        <h2 className="text-center text-3xl md:text-4xl md:mb-10  bg-green-500 rounded-full w-fit px-6 mx-auto drop-shadow-xl ">
+          Our Services
+        </h2>
+      </div>
       <div className="flex flex-col gap-10 flex-wrap  items-center justify-center mx-auto p-6   container m-auto md:flex-row md:p-0">
         <ServiceCard
           title="Lawn Mowing"

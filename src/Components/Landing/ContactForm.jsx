@@ -2,7 +2,7 @@ import React from "react"
 import { FaPhone } from "react-icons/fa"
 function ContactForm() {
   return (
-    <section className=" text-black  bg-white drop-shadow-xl rounded-sm  p-6 md:w-10/12  lg:w-full 	">
+    <section className=" text-black  bg-white drop-shadow-xl rounded-sm  p-6   lg:w-full 	">
       <div className=" ">
         <h2 className="mb-4 rounded-xl text-4xl tracking-tight font-extrabold text-center ">
           Get a Qoute
@@ -61,9 +61,9 @@ function ContactForm() {
         </form>
         <div className=" text-4xl my-14">
           <a
-            className="font-bold flex gap-2 justify-center hover:text-emerald-500 "
+            className="font-bold flex gap-2 justify-center hover:text-emerald-500 md:flex-row "
             href="tel:0493498074">
-            <FaPhone className="border-2  rounded-full p-2 text-4xl border-black" />
+            <FaPhone className="border-2  rounded-full p-2 md:text-4xl border-black" />
             0493498074
           </a>
         </div>

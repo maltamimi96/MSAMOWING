@@ -7,7 +7,7 @@ function ServiceCard(props) {
 
   return (
     <div className="w-full lg:w-1/4  text-center">
-      <Link to="/lawn-mowing" className="block">
+      <Link to="/lawn-mowing" className="block drop-shadow-xl ">
         <img
           src={props.url}
           alt="lawn mowing"
@@ -20,7 +20,7 @@ function ServiceCard(props) {
           <h3 className="text-lg font-medium">{props.title}</h3>
         </div>
       </Link>
-      <p className="text-gray-500 mt-2  text-center">{props.description}</p>
+      <p className="text-gray-500 mt-2  text-center ">{props.description}</p>
     </div>
   )
 }
