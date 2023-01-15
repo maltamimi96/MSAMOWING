@@ -15,6 +15,8 @@ import AdminViewCustomers from "./Components/Admin/AdminViewCustomers"
 import AdminCustomerProfile from "./Components/Admin/AdminCustomerProfile"
 import AdminViewInvoices from "./Components/Admin/AdminViewInvoices"
 import AdminViewInvoice from "./Components/Admin/adminViewInvoice"
+import Gallery from "./Pages/Gallery"
+import Contact from "./Pages/Contact"
 
 function App() {
   const [store, dispatch] = useReducer(reducer, initialState)
@@ -25,6 +27,8 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Landing />}></Route>
+            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/contact" element={<Contact />} />
 
             {/* admin routes */}
             <Route path="login" element={<Login />} />
@@ -35,7 +39,10 @@ function App() {
                 <Route path="view-invoices" element={<AdminViewInvoices />} />
 
                 <Route path="invoice-gen" element={<InvoiceGen2 />} />
-                <Route path="view-invoices/invoice/:id" element={<AdminViewInvoice />} />
+                <Route
+                  path="view-invoices/invoice/:id"
+                  element={<AdminViewInvoice />}
+                />
                 <Route
                   path="view-customers/customer/:id"
                   element={<AdminCustomerProfile />}

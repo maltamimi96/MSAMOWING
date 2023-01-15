@@ -1,11 +1,11 @@
 import React from "react"
 import { FaPhone } from "react-icons/fa"
-function ContactForm() {
+function ContactForm({ title }) {
   return (
-    <section className=" text-black  bg-white drop-shadow-xl rounded-sm  p-6   lg:w-full 	">
+    <section className=" text-black  bg-gray-200  rounded-xl  p-6   lg:w-full 	">
       <div className=" ">
         <h2 className="mb-4 rounded-xl text-4xl tracking-tight font-extrabold text-center ">
-          Get a Qoute
+          {title}
         </h2>
 
         <form action="#" classname="space-y-10 ">
@@ -56,12 +56,12 @@ function ContactForm() {
           <button
             type="submit"
             className="py-3 bg-green-600 px-5 text-md font-medium text-center mt-4 text-white  rounded-lg w-full  hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 ">
-            Send Enquiry
+            Send
           </button>
         </form>
         <div className=" text-4xl my-14">
           <a
-            className="font-bold flex gap-2 justify-center hover:text-emerald-500 md:flex-row "
+            className="font-bold flex flex-wrap-reverse gap-2 justify-center text-1xl hover:text-emerald-500 md:text-4xl md:flex-row "
             href="tel:0493498074">
             <FaPhone className="border-2  rounded-full p-2 md:text-4xl border-black" />
             0493498074

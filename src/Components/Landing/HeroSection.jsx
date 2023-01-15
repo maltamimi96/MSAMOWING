@@ -66,7 +66,7 @@ function HeroSection(props) {
       <Navbar />
       <div className=" bg-cover mb-6 flex flex-col-reverse  justify-between container  p-6 md:mx-auto md:p-0 md:gap-40  text-zinc-100 md:flex-row  md:mb-4 md:my-10   ">
         <div className="mt-6 md:mt-0 md:w-1/3 ">
-          <ContactForm />
+          <ContactForm title={"Get a Qoute"} />
         </div>
         <div className="flex flex-col  md:justify-start md:w-1/2 ">
           <h1 className="text-4xl md:text-6xl font-bold mb-4">

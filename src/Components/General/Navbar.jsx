@@ -39,7 +39,13 @@ function Navbar({ color }) {
             </div>
             <ul className="MENU-LINK-MOBILE-OPEN flex flex-col items-center justify-between min-h-[250px]">
               <li className=" text-2xl text-emerald-800 hover:text-orange-600 border-gray-400 my-8 uppercase">
-                <Link to="/">Gallery</Link>
+                <Link to="/gallery">Gallery</Link>
+              </li>
+              <li className=" text-2xl text-emerald-800 hover:text-orange-600 border-gray-400 my-8 uppercase">
+                <Link to="/services">Services</Link>
+              </li>
+              <li className=" text-2xl text-emerald-800 hover:text-orange-600 border-gray-400 my-8 uppercase">
+                <Link to="/contact">Contact</Link>
               </li>
             </ul>
           </div>
@@ -54,17 +60,17 @@ function Navbar({ color }) {
         </div>
         <div className="hidden md:flex justify-center gap-5 align-middle text-white">
           <Link
-            to={"/"}
+            to={"/contact"}
             className="text-1xl font-semibold text-center m-auto  bg-gradient-to-r from-green-500 to-green-600 rounded-xl px-4 py-2 hover:text-sky-300">
             Contact
           </Link>
           <Link
-            to={"/"}
+            to={"/gallery"}
             className="text-1xl font-semibold text-center m-auto  bg-gradient-to-r from-green-500 to-green-600 rounded-xl px-4 py-2 hover:text-sky-300">
             Gallery
           </Link>{" "}
           <Link
-            to={"/"}
+            to={"/services"}
             className="text-1xl font-semibold text-center m-auto bg-gradient-to-r from-green-500 to-green-600 rounded-xl px-4 py-2 hover:text-sky-300">
             Services
           </Link>
@@ -80,9 +86,10 @@ function Navbar({ color }) {
         position: absolute;
         width: 100%;
         height: 100vh;
+        border-radius:20px;
         top: 0;
         left: 0;
-        background: white;
+        background: lightgray;
         z-index: 10;
         display: flex;
         flex-direction: column;
