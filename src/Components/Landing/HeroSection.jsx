@@ -82,8 +82,12 @@ function HeroSection(props) {
               <FaToolbox className="mt-1" />
               Residential & Commercial Services
             </li>
-            <li className="flex gap-1 ">
+            <li className="flex  gap-1 ">
               <FaRegCalendarCheck className="mt-1" />
+              Easy Scheduling
+            </li>
+            <li className="flex gap-1 ">
+              <FaDollarSign className="mt-1" />
               Affordable Prices
             </li>
             <li className="flex gap-1 ">
