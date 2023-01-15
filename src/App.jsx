@@ -33,7 +33,7 @@ function App() {
             {/* admin routes */}
             <Route path="login" element={<Login />} />
             <Route element={<PrivateRoutes />}>
-              <Route path="admin" element={<Admin />}>
+              <Route path="/admin" element={<Admin />}>
                 <Route path="create-customer" element={<CreateCustomer />} />
                 <Route path="view-customers" element={<AdminViewCustomers />} />
                 <Route path="view-invoices" element={<AdminViewInvoices />} />
