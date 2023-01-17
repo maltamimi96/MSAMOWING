@@ -42,29 +42,12 @@ function HeroSection(props) {
 
   return (
     <section
-      className="min-h-screen bg-cover 	 bg-blend-multiply  flex flex-col brightness-90  justify-between bg-green-300 md:brightness-90 md:contrast-125   md:bg-center     "
+      className="min-h-screen bg-cover 	 bg-blend-multiply  flex flex-col brightness-90 bg-green-500  justify-between bg-right-bottom  md:bg-green-300 md:brightness-90 md:contrast-125   md:bg-center     "
       style={{
         backgroundImage: `url(https://images.unsplash.com/photo-1558337587-80f6bbf67e01?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80)`,
       }}>
-      {/* <div className="bg-gradient-to-r from-emerald-400 to-green-600 w-screen h-16 overflow-hidden hidden md:flex text-white justify-around text-4xl ">
-        <div className="flex gap-2 p-2">
-          <h2>GET A QUOUTE NOW</h2>
-          <FaQuoteRight />
-        </div>
-        <div className="flex gap-10  p-2">
-          <h2>Find us on </h2>
-          <FaWhatsapp />
-          <FaFacebook />
-          <FaInstagram />
-        </div>
-        <div className="flex gap-2  p-2">
-          <FaPhoneAlt />
-          <h2>0493498074</h2>
-        </div>
-      </div> */}
-
       <Navbar />
-      <div className=" bg-cover mb-6 flex flex-col-reverse  justify-between container  p-6 md:mx-auto md:p-0 md:gap-40  text-zinc-100 md:flex-row  md:mb-4 md:my-10   ">
+      <div className=" bg-cover mb-6 flex flex-col-reverse   justify-between container  p-6 md:mx-auto md:p-0 md:gap-40  text-zinc-100 md:flex-row  md:mb-4 md:my-10   ">
         <div className="mt-6 md:mt-0 md:w-1/3 ">
           <ContactForm title={"Get a Qoute"} />
         </div>

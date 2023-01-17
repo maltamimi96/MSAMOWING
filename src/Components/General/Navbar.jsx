@@ -10,14 +10,14 @@ function Navbar({ color }) {
   return (
     <div className="bg-transparent py-4">
       <nav className="relative container mx-auto p-1 w-full content-center flex justify-between  ">
-        <section className="MOBILE-MENU flex lg:hidden">
+        <section className="MOBILE-MENU flex md:hidden">
           <div
             className="HAMBURGER-ICON space-y-2"
             onClick={() => setIsNavOpen((prev) => !prev)} // toggle isNavOpen state on click
           >
-            <span className="block h-0.5 w-8 animate-pulse bg-gray-600"></span>
-            <span className="block h-0.5 w-8 animate-pulse bg-gray-600"></span>
-            <span className="block h-0.5 w-8 animate-pulse bg-gray-600"></span>
+            <span className="block h-0.5 w-8 animate-pulse bg-white"></span>
+            <span className="block h-0.5 w-8 animate-pulse bg-white"></span>
+            <span className="block h-0.5 w-8 animate-pulse bg-white"></span>
           </div>
 
           <div className={isNavOpen ? "showMenuNav" : "hideMenuNav"}>
@@ -26,7 +26,7 @@ function Navbar({ color }) {
               onClick={() => setIsNavOpen(false)} // change isNavOpen state to false to close the menu
             >
               <svg
-                className="h-8 w-8 text-gray-600"
+                className="h-8 w-8 text-white"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
