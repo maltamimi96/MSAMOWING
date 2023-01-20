@@ -7,7 +7,7 @@ function ServiceCard(props) {
 
   return (
     <div className="w-full lg:w-1/4  text-center">
-      <Link to="/lawn-mowing" className="block drop-shadow-xl ">
+      <Link to="/services" className="block drop-shadow-xl ">
         <img
           src={props.url}
           alt="lawn mowing"

@@ -20,7 +20,6 @@ function Footer() {
             <li className="mb-2">Lawn Mowing</li>
             <li className="mb-2">Lawn Maintenance</li>
             <li className="mb-2">Garden Care</li>
-            <li className="mb-2">Landscaping</li>
           </ul>
         </div>
         <div className="w-full md:w-1/4 text-gray-600 text-sm md:text-left">
