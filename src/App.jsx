@@ -17,6 +17,7 @@ import AdminViewInvoices from "./Components/Admin/AdminViewInvoices"
 import AdminViewInvoice from "./Components/Admin/adminViewInvoice"
 import Gallery from "./Pages/Gallery"
 import Contact from "./Pages/Contact"
+import Services from "./Pages/Services"
 
 function App() {
   const [store, dispatch] = useReducer(reducer, initialState)
@@ -29,6 +30,7 @@ function App() {
             <Route path="/" element={<Landing />}></Route>
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/services" element={<Services />} />
 
             {/* admin routes */}
             <Route path="login" element={<Login />} />

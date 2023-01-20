@@ -10,11 +10,11 @@ function ServiceGrid() {
   return (
     <section className="py-4">
       <div>
-        <h2 className="text-center text-3xl md:text-4xl md:mb-10  bg-green-500 rounded-full w-fit px-6 mx-auto drop-shadow-xl ">
+        <h2 className="text-center text-3xl md:text-4xl md:mb-10 uppercase font-bold   bg-green-500 rounded-full w-fit px-6 mx-auto drop-shadow-xl my-4 ">
           Our Services
         </h2>
       </div>
-      <div className="flex flex-col gap-10 flex-wrap  items-center justify-center mx-auto p-6   container m-auto md:flex-row md:p-0">
+      <div className="flex flex-col gap-10 flex-wrap  items-center justify-center mx-auto    container m-auto md:flex-row md:p-0">
         <ServiceCard
           title="Lawn Mowing"
           description="Keep your lawn looking neat and tidy with our professional mowing

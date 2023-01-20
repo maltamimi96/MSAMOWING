@@ -52,15 +52,16 @@ function HeroSection(props) {
           <ContactForm title={"Get a Qoute"} />
         </div>
         <div className="flex flex-col  md:justify-start md:w-1/2 ">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">
+          <h1 className="text-4xl focus-in-expand  md:text-4xl lg:text-7xl font-bold mb-4 uppercase">
             Professional Lawn Services
           </h1>
-          <h2 className="text-2xl md:text-3xl mb-4 font-sans">
+          <h2 className=" focus-in-expand text-2xl font-bold md:text-3xl mb-4 font-sans">
             MSA Mowing is a reliable and professional lawn care service that
             provides a wide range of services to keep your lawn looking healthy
             and beautiful
           </h2>
-          <ul className="text-2xl md:text-3xl flex flex-col gap-2 md:pl-4 capitalize">
+          <h2 className="text-2xl md:text-3xl mb-4 font-sans"></h2>
+          <ul className="text-2xl md:text-3xl flex flex-col gap-2  capitalize">
             <li className="flex  gap-1 ">
               <FaToolbox className="mt-1" />
               Residential & Commercial Services
@@ -82,11 +83,29 @@ function HeroSection(props) {
               Professional Team
             </li>
           </ul>
+          <div className="flex md:flex-row gap-4">
+            <a
+              href="https://www.instagram.com/protapplumbing/"
+              className="focus-in-expand py-3 flex gap-1  bg-green-500 px-5 w-fit text-md font-medium text-center mt-8 text-white hover:bg-cyan-800  rounded-lg  hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 ">
+              <FaPhoneAlt className="m-auto text-2xl" />
+              <h2 className=" md:text-2xl m-auto uppercase font-bold">
+                Call now
+              </h2>
+            </a>
+            <a
+              href="https://www.instagram.com/protapplumbing/"
+              className="focus-in-expand py-3 flex gap-1  bg-green-500 px-5 w-fit text-md font-medium text-center mt-8 text-white hover:bg-cyan-800  rounded-lg  hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 ">
+              <FaInstagram className="m-auto text-2xl" />
+              <h2 className=" md:text-2xl m-auto uppercase font-bold">
+                Instagram
+              </h2>
+            </a>
+          </div>
         </div>
       </div>
 
       <div className="bg-zinc-700/50 	 w-screen h-fit p-4 text-white">
-        <h1 className="text-center md:text-2xl capitalise text-gray-200 mb-4 ">
+        <h1 className="text-center md:text-4xl uppercase font-bold text-gray-200 mb-4 ">
           Area Of Service
         </h1>
         <ul className="flex flex-wrap  md:gap-2 justify-center">
