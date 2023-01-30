@@ -42,13 +42,17 @@ function Footer() {
           <h6 className="font-bold text-gray-800 mb-4">Socials</h6>
           <ul className="list-unstyled flex items-center">
             <li className="mr-4">
-              <a href="#" className="text-gray-600 hover:text-gray-800">
+              <a
+                href="https://www.facebook.com/profile.php?id=100089696359545"
+                className="text-gray-600 hover:text-gray-800">
                 <FaFacebook className="w-6 h-6" />
               </a>
             </li>
 
             <li className="mr-4">
-              <a href="#" className="text-gray-600 hover:text-gray-800">
+              <a
+                href="https://www.instagram.com/msamowing/"
+                className="text-gray-600 hover:text-gray-800">
                 <FaInstagram className="w-6 h-6" />
               </a>
             </li>

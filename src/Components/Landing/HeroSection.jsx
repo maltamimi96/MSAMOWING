@@ -85,7 +85,7 @@ function HeroSection(props) {
           </ul>
           <div className="flex md:flex-row gap-4">
             <a
-              href="https://www.instagram.com/protapplumbing/"
+              href="tel:0493498074"
               className="focus-in-expand py-3 flex gap-1  bg-green-500 px-5 w-fit text-md font-medium text-center mt-8 text-white hover:bg-cyan-800  rounded-lg  hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 ">
               <FaPhoneAlt className="m-auto text-2xl" />
               <h2 className=" md:text-2xl m-auto uppercase font-bold">
@@ -93,7 +93,7 @@ function HeroSection(props) {
               </h2>
             </a>
             <a
-              href="https://www.instagram.com/protapplumbing/"
+              href="https://www.instagram.com/msamowing/"
               className="focus-in-expand py-3 flex gap-1  bg-green-500 px-5 w-fit text-md font-medium text-center mt-8 text-white hover:bg-cyan-800  rounded-lg  hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 ">
               <FaInstagram className="m-auto text-2xl" />
               <h2 className=" md:text-2xl m-auto uppercase font-bold">
